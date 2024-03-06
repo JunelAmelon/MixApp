@@ -1,5 +1,7 @@
 <?php
 
+// src/Entity/AudiosProjet.php
+
 namespace App\Entity;
 
 use App\Repository\AudiosProjetRepository;
@@ -20,8 +22,15 @@ class AudiosProjet
     private ?int $id_projet = null;
 
     #[ORM\Column]
-
     private ?int $id_audio = null;
+
+    #[ORM\ManyToOne(targetEntity: Projet::class, inversedBy: "audiosProjets")]
+    #[ORM\JoinColumn(name: "id_projet", referencedColumnName: "id")]
+    private ?Projet $projet = null;
+
+    #[ORM\ManyToOne(targetEntity: Audios::class, inversedBy: "audiosProjets")]
+    #[ORM\JoinColumn(name: "id_audio", referencedColumnName: "id")]
+    private ?Audios $audios = null;
 
     public function getId(): ?int
     {
@@ -33,7 +42,7 @@ class AudiosProjet
         return $this->etat_audio;
     }
 
-    public function setEtatAudio(string $etat_audio): static
+    public function setEtatAudio(string $etat_audio): self
     {
         $this->etat_audio = $etat_audio;
 
@@ -45,7 +54,7 @@ class AudiosProjet
         return $this->id_projet;
     }
 
-    public function setIdProjet(int $id_projet): static
+    public function setIdProjet(int $id_projet): self
     {
         $this->id_projet = $id_projet;
 
@@ -57,19 +66,34 @@ class AudiosProjet
         return $this->id_audio;
     }
 
-    public function setIdAudio(int $id_audio): static
+    public function setIdAudio(int $id_audio): self
     {
         $this->id_audio = $id_audio;
 
         return $this;
     }
 
+    public function getProjet(): ?Projet
+    {
+        return $this->projet;
+    }
 
-    #[ORM\ManyToOne(targetEntity: Projet::class, inversedBy: "audiosProjets")]
-    #[ORM\JoinColumn(name: "id_projet", referencedColumnName: "id")]
-    private ?Projet $projet = null;
+    public function setProjet(?Projet $projet): self
+    {
+        $this->projet = $projet;
 
-    #[ORM\ManyToOne(targetEntity: Audios::class, inversedBy: "audiosProjets")]
-    #[ORM\JoinColumn(name: "id_audio", referencedColumnName: "id")]
-    private ?Audios $audios = null;
+        return $this;
+    }
+
+    public function getAudios(): ?Audios
+    {
+        return $this->audios;
+    }
+
+    public function setAudios(?Audios $audios): self
+    {
+        $this->audios = $audios;
+
+        return $this;
+    }
 }
