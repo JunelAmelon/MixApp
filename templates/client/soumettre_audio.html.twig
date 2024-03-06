@@ -1,0 +1,23 @@
+<!-- templates/client/soumettre_audio.html.twig -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumettre un Audio</title>
+</head>
+<body>
+    <h1>Soumettre un Audio</h1>
+
+    {# Affichez éventuellement des messages flash ou des erreurs du formulaire ici #}
+
+   <form method="post" action="{{ path('client_soumettre_audio', {'projetId': projet.id}) }}" enctype="multipart/form-data">
+    {{ form_widget(form) }}
+    <button type="submit">Soumettre</button>
+</form>
+
+
+    
+</body>
+</html>

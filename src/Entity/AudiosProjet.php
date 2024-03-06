@@ -64,6 +64,7 @@ class AudiosProjet
         return $this;
     }
 
+
     #[ORM\ManyToOne(targetEntity: Projet::class, inversedBy: "audiosProjets")]
     #[ORM\JoinColumn(name: "id_projet", referencedColumnName: "id")]
     private ?Projet $projet = null;

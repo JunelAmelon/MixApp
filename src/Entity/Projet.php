@@ -3,9 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjetRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
-
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProjetRepository::class)]
 class Projet
@@ -19,9 +18,9 @@ class Projet
     private ?string $nom_projet = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-     private ?\DateTimeInterface $date_creation = null;
+    private ?\DateTimeInterface $date_creation = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length : 255)]
     private ?string $etat_projet = null;
 
     public function getId(): ?int
@@ -52,7 +51,6 @@ class Projet
 
         return $this;
     }
-    
 
     public function getEtatProjet(): ?string
     {
@@ -66,5 +64,24 @@ class Projet
         return $this;
     }
 
+    #[ORM\OneToMany(targetEntity: AudiosProjet::class, mappedBy: "projet")]
+    private $audiosProjets;
+
+    #[ORM\Column]
+    private ?int $id_client = null;
+
+    public function getIdClient(): ?int
+    {
+        return $this->id_client;
+    }
+
+    public function setIdClient(int $id_client): static
+    {
+        $this->id_client = $id_client;
+
+        return $this;
+    }
+
+  
 
 }
