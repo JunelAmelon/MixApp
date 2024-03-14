@@ -1,0 +1,17 @@
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+	<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+	<script src="{{ asset('js/mixitup.min.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
+
+
+    
+    {% block javascripts %}
+    {# Inclure les fichiers JavaScript ici #}
+    <script src="{{ asset('js/jplayerInit.js') }}"></script>
+    <script src="{{ asset('js/jquery.jplayer.min.js') }}"></script>
+    <script src="{{ asset('js/wavesurfer.min.js') }}"></script>
+    <script src="{{ asset('js/WaveSurferInit.js') }}"></script>
+{% endblock %}

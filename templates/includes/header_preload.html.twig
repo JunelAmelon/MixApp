@@ -5,14 +5,14 @@
 
 	<!-- Header section -->
 <header class="header-section clearfix">
-    <a href="index.html" class="site-logo" style="font-size: 20px;">
+    <a href="{{ path('app_home') }}" class="site-logo" style="font-size: 20px;">
         <img src="{{ asset('img/logo.png') }}" alt="SolMusic">
     </a>
     <div class="header-right">
         <div class="user-panel">
             {% if app.user %}
                 {# Utilisateur connecté #}
-                <a href="">Submit Audio</a>
+                <a href="{{ path('client_creer_projet') }}">Create Project</a>
                 <a href="">My Projects</a>
                 <a href="">Validate</a>
                 <a>|</a>
@@ -27,8 +27,8 @@
         </div>
     </div>
     <ul class="main-menu">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="{{ path('app_home') }}">Home</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#">Contact</a></li>
     </ul>
 </header>

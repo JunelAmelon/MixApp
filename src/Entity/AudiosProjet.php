@@ -15,13 +15,13 @@ class AudiosProjet
 
     #[ORM\Column(length: 255)]
     private ?string $etat_audio = null;
+ 
+   #[ORM\Column]
+    private ?int $projet_id = null;
+     
 
-    #[ORM\Column]
-    private ?int $id_projet = null;
-
-    #[ORM\Column]
-
-    private ?int $id_audio = null;
+     #[ORM\Column]
+    private ?int $my_id_audio = null;
 
     public function getId(): ?int
     {
@@ -33,6 +33,10 @@ class AudiosProjet
         return $this->etat_audio;
     }
 
+     public function getmyIdAudio(): ?string
+    {
+        return $this->my_id_audio;
+    }
     public function setEtatAudio(string $etat_audio): static
     {
         $this->etat_audio = $etat_audio;
@@ -40,36 +44,29 @@ class AudiosProjet
         return $this;
     }
 
-    public function getIdProjet(): ?int
+    
+     public function getProjetId(): ?int
     {
-        return $this->id_projet;
+        return $this->projet_id;
     }
 
-    public function setIdProjet(int $id_projet): static
+  
+     public function setProjetId(int $projet_id): static
     {
-        $this->id_projet = $id_projet;
+        $this->projet_id = $projet_id;
 
         return $this;
     }
+    
 
-    public function getIdAudio(): ?int
+    
+    public function setMyIdAudio(int $my_id_audio): static
     {
-        return $this->id_audio;
-    }
-
-    public function setIdAudio(int $id_audio): static
-    {
-        $this->id_audio = $id_audio;
+        $this->my_id_audio = $my_id_audio;
 
         return $this;
     }
-
-
-    #[ORM\ManyToOne(targetEntity: Projet::class, inversedBy: "audiosProjets")]
-    #[ORM\JoinColumn(name: "id_projet", referencedColumnName: "id")]
-    private ?Projet $projet = null;
-
-    #[ORM\ManyToOne(targetEntity: Audios::class, inversedBy: "audiosProjets")]
-    #[ORM\JoinColumn(name: "id_audio", referencedColumnName: "id")]
+    // #[ORM\ManyToOne(targetEntity: Audios::class, inversedBy: "audiosProjets")]
+    // #[ORM\JoinColumn(name: "my_id_audio", referencedColumnName: "id")]
     private ?Audios $audios = null;
 }

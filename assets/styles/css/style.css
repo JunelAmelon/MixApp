@@ -1511,6 +1511,8 @@ Responsive
 	.header-right-warp .header-right .user-panel .login {
 		padding-right: 10px;
 	}
+
+	
 	.sub-text {
 		margin-bottom: 50px;
 	}
@@ -1521,6 +1523,8 @@ Responsive
 	.playlist-section .section-title {
 		float: none;
 	}
+
+
 	.category-links,
 	.playlist-filter {
 		text-align: left;

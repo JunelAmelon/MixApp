@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>SolMusic | HTML Template</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="SolMusic HTML Template">
+    <meta name="keywords" content="music, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ asset('styles/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/css/slicknav.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/css/form-create-project.css') }}">
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <style>
+       
+    </style>
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    {% include 'includes/header_preload.html.twig' %}
+
+    <!-- Votre template Twig -->
+   <section class="premium-section spad" style="margin-top: 5%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <h2>Create your project now</h2> <br>
+                        <img src="{{ asset('img/15.jpg') }}" alt="casque audio" style="height: 50vh;">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    {{ form_start(form, {'attr': {'class': 'form-group'}}) }}
+                    <!-- Afficher les erreurs générales du formulaire -->
+                    {{ form_errors(form) }}
+                    
+                    {{ form_row(form.nom_projet, {'attr': {'class': 'form-control', 'placeholder': 'Nom du Projet'}}) }}
+                    <!-- Afficher les erreurs spécifiques au champ nom_projet -->
+                    <div class="error-message">{{ form_errors(form.nom_projet) }}</div>
+                    
+                    {{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+                    <!-- Afficher les erreurs spécifiques au champ description -->
+                    <div class="error-message">{{ form_errors(form.description) }}</div>
+                    
+                    <button type="submit" class="btn btn-primary">Créer le Projet</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-7 order-lg-2">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="footer-widget">
+                                <h2>About us</h2>
+                                <ul>
+                                    <li><a href="">Our Story</a></li>
+                                    <li><a href="">Sol Music Blog</a></li>
+                                    <li><a href="">History</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="footer-widget">
+                                <h2>Products</h2>
+                                <ul>
+                                    <li><a href="">Music</a></li>
+                                    <li><a href="">Subscription</a></li>
+                                    <li><a href="">Custom Music</a></li>
+                                    <li><a href="">Footage</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="footer-widget">
+                                <h2>Playlists</h2>
+                                <ul>
+                                    <li><a href="">Newsletter</a></li>
+                                    <li><a href="">Careers</a></li>
+                                    <li><a href="">Press</a></li>
+                                    <li><a href="">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-5 order-lg-1">
+                    <img src="{{ asset('img/logo.png') }}" alt="SolMusic">
+                    <div class="copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        All rights reserved 
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="social-links">
+                        <a href=""><i class="fa fa-instagram"></i></a>
+                        <a href=""><i class="fa fa-pinterest"></i></a>
+                        <a href=""><i class="fa fa-facebook"></i></a>
+                        <a href=""><i class="fa fa-twitter"></i></a>
+                        <a href=""><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer section end -->
+    
+    <!--====== Javascripts & Jquery ======-->
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+    {% block javascripts %}
+    {# Inclure les fichiers JavaScript ici #}
+    <script src="{{ asset('js/jplayerInit.js') }}"></script>
+    <script src="{{ asset('js/jquery.jplayer.min.js') }}"></script>
+    <script src="{{ asset('js/wavesurfer.min.js') }}"></script>
+    <script src="{{ asset('js/WaveSurferInit.js') }}"></script>
+    {% endblock %}
+
+</body>
+</html>

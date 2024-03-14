@@ -1,0 +1,25 @@
+ /* Ajoutez un style au fond blanc du formulaire */
+        .premium-section {
+            background-color: #ffffff;
+            padding: 50px 0; /* Ajoutez de l'espace autour du formulaire */
+        }
+
+        /* Stylisez le titre "Create your project now" */
+         
+
+        /* Stylisez le bouton de soumission du formulaire */
+        button[type="submit"] {
+            background-color: #fc0254; /* Bleu pour le bouton */
+            color: #ffffff; /* Texte en blanc */
+            padding: 10px 20px; /* Ajoutez de l'espace autour du bouton */
+            border: none; /* Supprimez la bordure du bouton */
+            border-radius: 5px; /* Ajoutez des coins arrondis */
+            cursor: pointer;
+            margin-top: 4%;
+            
+        }
+          /* Ajoutez un style pour les messages d'erreur */
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }

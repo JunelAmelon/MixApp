@@ -4,6 +4,8 @@
 namespace App\Controller;
 
 use App\Entity\Audios;
+use App\Entity\User;
+use DateTime;
 use App\Entity\AudiosProjet;
 use App\Entity\Projet;
 use App\Form\AudioType;
@@ -15,31 +17,55 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\DBAL\Connection;
+
+
 
 class ClientController extends AbstractController
 {
-    #[Route('/client/creer-projet', name: 'client_creer_projet')]
-    public function creerProjet(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $projet = new Projet();
-        $form = $this->createForm(ProjetType::class, $projet);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    
+   #[Route('/client/creer-projet', name: 'client_creer_projet')]
+public function creerProjet(Request $request, EntityManagerInterface $entityManager): Response
+{
+    $client = $this->getUser(); // Assurez-vous que le client est connecté
+    $id_client= $client->getUserIdentifier();
+    
+    $projet = new Projet();
 
-            $entityManager->persist($projet);
-            $entityManager->flush();
+    $form = $this->createForm(ProjetType::class, $projet);
+    $form->handleRequest($request);
 
-            $this->addFlash('success', 'Le projet a été créé avec succès.');
+    if ($form->isSubmitted() && $form->isValid()) {
+        $projet->setEtatProjet('en attente');
+        $projet->setDateCreation(new \DateTime());
+        $projet->SetUserIdentifier($id_client); // Utilisez l'ID du client connecté
+ 
 
-            return $this->redirectToRoute('client_soumettre_audio', ['projetId' => $projet->getId()]);
-        }
+        $entityManager->persist($projet);
+        $entityManager->flush();
 
-        return $this->render('client/creer_projet.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        $this->addFlash('success', 'Le projet a été créé avec succès.');
+
+        return $this->redirectToRoute('client_soumettre_audio', ['projetId' => $projet->getId()]);
     }
-    #[Route('/client/soumettre-audio/{projetId}', name: 'client_soumettre_audio')]
+
+    return $this->render('client/create-project.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+
+#[Route('/client/liste-des-projets', name: 'project_list')]
+public function ListerProjet(): Response
+{
+     return $this->render('client/listing-projects.html.twig');
+
+}
+
+   
+
+#[Route('/client/soumettre-audio/{projetId}', name: 'client_soumettre_audio')]
+ 
 public function soumettreAudio(
     Request $request,
     int $projetId,
@@ -74,6 +100,9 @@ public function soumettreAudio(
         $audio->setFiles($fileName);
         $audio->setDatesAjout(new \DateTime());
 
+        // Désactiver les contraintes de clé étrangère
+        $this->disableForeignKeyConstraints($entityManager->getConnection());
+
         // Persiste l'objet Audios dans la base de données
         $entityManager->persist($audio);
         $entityManager->flush(); // Flush pour obtenir l'ID généré
@@ -81,12 +110,17 @@ public function soumettreAudio(
         // Créer une nouvelle instance de AudiosProjet et associer les entités manuellement
         $audiosProjet = new AudiosProjet();
         $audiosProjet->setEtatAudio('en attente'); // Remplacez par l'état audio approprié
-
         // Associe manuellement le projet, l'audio et l'état audio à l'objet AudiosProjet
-        $audiosProjet->setIdProjet($projet->getId());
-        $audiosProjet->setIdAudio($audio->getId()); // Utilisez l'ID de l'audio nouvellement persisté
+        $id_projet= $projet->getId();
+        $id_audio= $audio->getId();
+        $audiosProjet->setProjetId($id_projet);
+        
+        $audiosProjet->setMyIdAudio($id_audio);
+        
         $entityManager->persist($audiosProjet);
-        dd($projet->getId(), $audiosProjet->getIdProjet(), $audiosProjet->getId());
+        // Réactiver les contraintes de clé étrangère
+        $this->enableForeignKeyConstraints($entityManager->getConnection());
+
         // Applique les changements dans la base de données
         $entityManager->flush();
 
@@ -102,5 +136,14 @@ public function soumettreAudio(
 }
 
 
+private function disableForeignKeyConstraints(Connection $connection)
+{
+    $connection->executeStatement('SET foreign_key_checks = 0;');
+}
+
+private function enableForeignKeyConstraints(Connection $connection)
+{
+    $connection->executeStatement('SET foreign_key_checks = 1;');
+}
 
 }
