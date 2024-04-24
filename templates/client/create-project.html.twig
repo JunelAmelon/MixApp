@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-    <title>SolMusic | HTML Template</title>
+    <title>Créer votre projet</title>
     <meta charset="UTF-8">
     <meta name="description" content="SolMusic HTML Template">
     <meta name="keywords" content="music, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{{ asset('styles/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/css/slicknav.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/css/form-create-project.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form-create-project.css') }}">
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -37,11 +37,24 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-title">
-                        <h2>Create your project now</h2> <br>
+                        <h2>{{ 'Créer votre projet maintenant' | trans }}</h2> <br>
                         <img src="{{ asset('img/15.jpg') }}" alt="casque audio" style="height: 50vh;">
                     </div>
                 </div>
                 <div class="col-lg-6">
+                {# Affichage des erreurs de formulaire #}
+                {% if form_errors(form) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+
+                {# Affichage des messages flash de succès #}
+                {% for message in app.session.flashBag.get('success-p') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
                     {{ form_start(form, {'attr': {'class': 'form-group'}}) }}
                     <!-- Afficher les erreurs générales du formulaire -->
                     {{ form_errors(form) }}
@@ -53,6 +66,13 @@
                     {{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
                     <!-- Afficher les erreurs spécifiques au champ description -->
                     <div class="error-message">{{ form_errors(form.description) }}</div>
+
+                    <div class="form-group">
+                    <div class="custom-file" style="margin-bottom: 10px;">
+                    {{ form_widget(form.files, {'attr': {'class': 'custom-file-input', 'style': 'background-color: white; color: black;', 'onchange': 'updateFileName(this)'}}) }}
+                    <label class="custom-file-label" for="{{ form.files.vars.id }}">Aucun fichier choisi</label>
+        </div>
+    </div>
                     
                     <button type="submit" class="btn btn-primary">Créer le Projet</button>
                     {{ form_end(form) }}
@@ -120,6 +140,13 @@
             </div>
         </div>
     </footer>
+    <script>
+        function updateFileName(input) {
+            var fileName = input.value.split('\\').pop(); // Obtenir le nom du fichier à partir du chemin complet du fichier
+            var label = input.nextElementSibling; // Sélectionner le label suivant l'input
+            label.innerHTML = fileName; // Mettre à jour le texte du label avec le nom du fichier
+        }
+    </script>
     <!-- Footer section end -->
     
     <!--====== Javascripts & Jquery ======-->

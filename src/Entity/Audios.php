@@ -27,6 +27,10 @@ class Audios
         return $this->id;
     }
 
+
+
+   
+
     public function getFiles(): ?string
     {
         return $this->files;
@@ -50,7 +54,7 @@ class Audios
 
         return $this;
     }
-     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: "audios")]
+    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: "audios")]
     #[ORM\JoinColumn(name: "client_id", referencedColumnName: "id")]
     private ?Client $client = null;
 

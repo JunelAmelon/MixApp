@@ -18,13 +18,12 @@ class Projet
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom_projet = null;
+    private string $nom_projet;
 
-       #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?DateTimeInterface $date_creation = null;
 
-
-    #[ORM\Column(length : 255)]
+    #[ORM\Column(length: 255)]
     private ?string $etat_projet = null;
 
     public function getId(): ?int
@@ -37,10 +36,23 @@ class Projet
         return $this->nom_projet;
     }
 
+
     public function setNomProjet(string $nom_projet): static
     {
         $this->nom_projet = $nom_projet;
 
+        return $this;
+    }
+  
+    // Ajoutez le getter pour récupérer la valeur de la propriété etat_projet
+    public function getEtatProjet(): ?string
+    {
+        return $this->etat_projet;
+    }
+    // Ajoutez le setter pour définir la valeur de la propriété etat_projet
+    public function setEtatProjet(string $etat_projet): self
+    {
+        $this->etat_projet = $etat_projet;
         return $this;
     }
 
@@ -56,16 +68,11 @@ class Projet
         return $this;
     }
 
-    public function getEtatProjet(): ?string
+    public function isValide(): bool
     {
-        return $this->etat_projet;
-    }
+       
 
-    public function setEtatProjet(string $etat_projet): static
-    {
-        $this->etat_projet = $etat_projet;
-
-        return $this;
+        return $this->etat_projet === 'valider';
     }
 
     #[ORM\OneToMany(targetEntity: AudiosProjet::class, mappedBy: "projet")]
@@ -76,6 +83,9 @@ class Projet
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $files= null;
 
     public function getIdClient(): ?string
     {
@@ -89,7 +99,7 @@ class Projet
         return $this;
     }
 
-      public function SetUserIdentifier(?string $id_client): static
+      public function setUserIdentifier(?string $id_client): static
     {
        $this->id_client = $id_client;
 
@@ -111,5 +121,17 @@ class Projet
 
 //   #[ORM\OneToOne(targetEntity: Client::class, mappedBy: "projet")]
 //     private $id_client;
+
+public function getFiles(): ?string
+{
+    return $this->files;
+}
+
+public function setFiles(string $files): static
+{
+    $this->files = $files;
+
+    return $this;
+}
 
 }

@@ -1,0 +1,39 @@
+{# templates/ingenieur/projets.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des projets{% endblock %}
+
+{% block body %}
+    <h1>Liste des projets</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Nom du client</th>
+                <th>Prénom du client</th>
+                <th>Date de création</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for projet in projets %}
+                <tr>
+                    <td>{{ projet.titre }}</td>
+                    <td>{{ projet.description }}</td>
+                    <td>{{ projet.client.nom }}</td>
+                    <td>{{ projet.client.prenom }}</td>
+                    <td>{{ projet.dateCreation|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ projet.statut }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+            <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+            <script src="{{ asset('js/click-scroll.js') }}"></script>
+            <script src="{{ asset('js/custom.js') }}"></script>
+{% endblock %}

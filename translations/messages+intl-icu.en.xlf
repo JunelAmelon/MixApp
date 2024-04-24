@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="DMuJHFl" resname="Le projet n'existe pas.">
+        <source>Le projet n'existe pas.</source>
+        <target>The project does not exist.</target>
+      </trans-unit>
+      <trans-unit id="DMuJdt" resname="Create Project">
+        <source>Create Project</source>
+        <target>Créer un projet</target>
+      </trans-unit>
+      <trans-unit id="Un2l39Y" resname="Le fichier audio a été soumis avec succès.">
+        <source>Le fichier audio a été soumis avec succès.</source>
+        <target>The audio file has been successfully submitted.</target>
+      </trans-unit>
+      <trans-unit id="YACZ9LO" resname="L'audio a été validé avec succès.">
+        <source>L'audio a été validé avec succès.</source>
+        <target>The audio has been successfully validated.</target>
+      </trans-unit>
+      <trans-unit id="KzpajQm" resname="Créer votre projet maintenant">
+        <source>Créer votre projet maintenant</source>
+        <target>Create your project now</target>
+      </trans-unit>
+      <trans-unit id="NQLZeTl" resname="Le fichier audio demandé n'existe pas.">
+        <source>Le fichier audio demandé n'existe pas.</source>
+        <target>The requested audio file does not exist.</target>
+      </trans-unit>
+      <trans-unit id="f593Mz6" resname="Projet non trouvé ou n'appartient pas à l'utilisateur connecté.">
+        <source>Projet non trouvé ou n'appartient pas à l'utilisateur connecté.</source>
+        <target>Project not found or does not belong to the logged-in user.</target>
+      </trans-unit>
+
+        <trans-unit id="f593Mz7" resname="Créer un projet">
+        <source>Créer un projet</source>
+        <target>Create project</target>
+       </trans-unit>
+         <trans-unit id="f593Mz76" resname="Vos projets">
+        <source>Vos projets</source>
+        <target>Your project</target>
+       </trans-unit>
+        <trans-unit id="f593Mz8" resname="Déconnecter">
+        <source>Déconnecter</source>
+        <target>Log out</target>
+       </trans-unit>
+        <trans-unit id="f593Mz9" resname="S'inscrire">
+        <source>S'inscrire</source>
+        <target>Sign up</target>
+       </trans-unit>
+        <trans-unit id="f593Mz10" resname="Se connecter">
+        <source>Se connecter</source>
+        <target>Sign in</target>
+       </trans-unit>
+        <trans-unit id="f593Mz11" resname="Accueil">
+        <source>Accueil</source>
+        <target>Home</target>
+       </trans-unit>
+
+       <trans-unit id="f593Mz12" resname="A propos">
+        <source>A propos</source>
+        <target>About us</target>
+       </trans-unit>
+
+        <trans-unit id="f593Mz13" resname="Contactez-nous">
+        <source>Contactez-nous</source>
+        <target>Contact us</target>
+       </trans-unit>
+       <trans-unit id="f593Mzd14" resname="Vos projets">
+        <source>Vos projets</source>
+        <target>Your projects</target>
+       </trans-unit>
+
+       <trans-unit id="f593Mz15" resname="En cours">
+        <source>En cours</source>
+        <target>In progress</target>
+       </trans-unit>
+
+       <trans-unit id="f593Mz16" resname="Valider">
+        <source>Valider</source>
+        <target>validated</target>
+       </trans-unit>
+
+       <trans-unit id="f593Mz17" resname="Nouveau commentaire">
+        <source>'Nouveau commentaire</source>
+        <target>New comment</target>
+       </trans-unit>
+
+       <trans-unit id="f593Mz18" resname="Envoyer">
+        <source>Envoyer</source>
+        <target>Submit</target>
+       </trans-unit>
+
+       <trans-unit id="f593Mz19" resname="Forum de discussion">
+        <source>Forum de discussion</source>
+        <target>Discussion's forum</target>
+       </trans-unit>
+       <!-- Hero section -->
+<trans-unit id="f593Mz1gp1" resname="Acceuil">
+    <source>Acceuil</source>
+    <target>Home</target>
+</trans-unit>
+<trans-unit id="f593Mz1gl1" resname="De la musique pour tout le monde.">
+    <source>De la musique pour tout le monde.</source>
+    <target>Music for everyone.</target>
+</trans-unit>
+<trans-unit id="f593Mz1gg1" resname="Avec SolMusic, découvrez une collection de musiques diverses et variées pour tous les goûts.">
+    <source>Avec SolMusic, découvrez une collection de musiques diverses et variées pour tous les goûts.</source>
+    <target>With SolMusic, discover a collection of diverse and varied music for all tastes.</target>
+</trans-unit>
+
+<!-- Intro section -->
+<trans-unit id="f593Mz1yy5" resname="Accès illimité à 100K pistes">
+    <source>Accès illimité à 100K pistes</source>
+    <target>Unlimited access to 100K tracks</target>
+</trans-unit>
+<trans-unit id="f593Mz1gg5" resname="Découvrez une bibliothèque de plus de 100 000 pistes musicales à explorer et à apprécier.">
+    <source>Découvrez une bibliothèque de plus de 100 000 pistes musicales à explorer et à apprécier.</source>
+    <target>Discover a library of over 100,000 music tracks to explore and enjoy.</target>
+</trans-unit>
+
+<!-- Concept section -->
+<trans-unit id="f593Mz14" resname="Nos genres musicaux">
+    <source>Nos genres musicaux</source>
+    <target>Our music genres</target>
+</trans-unit>
+<trans-unit id="f593Mz1y4" resname="Découvrez notre large gamme de genres musicaux et trouvez celui qui correspond à votre style.">
+    <source>Découvrez notre large gamme de genres musicaux et trouvez celui qui correspond à votre style.</source>
+    <target>Discover our wide range of music genres and find the one that matches your style.</target>
+</trans-unit>
+
+<!-- Subscription section -->
+<trans-unit id="f593Mzi6" resname="Un service de mastering de qualité professionnelle">
+    <source>Un service de mastering de qualité professionnelle</source>
+    <target>A professional quality mastering service</target>
+</trans-unit>
+<trans-unit id="f593Mnz67" resname="Bénéficiez d'un service de mastering professionnel pour sublimer vos morceaux. Notre équipe d'ingénieurs du son travaille avec passion pour vous offrir un rendu exceptionnel. Lancez-vous dès maintenant !">
+    <source>Bénéficiez d'un service de mastering professionnel pour sublimer vos morceaux. Notre équipe d'ingénieurs du son travaille avec passion pour vous offrir un rendu exceptionnel. Lancez-vous dès maintenant !</source>
+    <target>Benefit from a professional mastering service to enhance your tracks. Our team of sound engineers works passionately to offer you an exceptional result. Get started now!</target>
+</trans-unit>
+ <trans-unit id="DMuJHFbul" resname="Mes projets">
+        <source>Mes projets</source>
+        <target>My projects</target>
+  </trans-unit>
+<trans-unit id="comment_ca_marche" resname="Comment ça marche">
+    <source>Comment ça marche</source>
+    <target>How it works</target>
+</trans-unit>
+
+<trans-unit id="creer_un_compte" resname="Créez un compte">
+    <source>Créez un compte</source>
+    <target>Create an account</target>
+</trans-unit>
+
+<trans-unit id="commencez_creer_compte" resname="Commencez par créer un compte pour accéder à toutes les fonctionnalités de SolMusic.">
+    <source>Commencez par créer un compte pour accéder à toutes les fonctionnalités de SolMusic.</source>
+    <target>Start by creating an account to access all SolMusic's features.</target>
+</trans-unit>
+
+<trans-unit id="choisissez_un_plan" resname="Choisissez un plan">
+    <source>Choisissez un plan</source>
+    <target>Choose a plan</target>
+</trans-unit>
+
+<trans-unit id="optez_meilleur_plan" resname="Optez pour le plan qui correspond le mieux à vos besoins pour profiter pleinement de notre service.">
+    <source>Optez pour le plan qui correspond le mieux à vos besoins pour profiter pleinement de notre service.</source>
+    <target>Choose the plan that best suits your needs to fully enjoy our service.</target>
+</trans-unit>
+
+<trans-unit id="telechargez_de_la_musique" resname="Téléchargez de la musique">
+    <source>Téléchargez de la musique</source>
+    <target>Download music</target>
+</trans-unit>
+
+<trans-unit id="une_fois_inscrit" resname="Une fois inscrit, explorez notre catalogue et téléchargez vos morceaux préférés pour une écoute illimitée.">
+    <source>Une fois inscrit, explorez notre catalogue et téléchargez vos morceaux préférés pour une écoute illimitée.</source>
+    <target>Once registered, explore our catalog and download your favorite tracks for unlimited listening.</target>
+</trans-unit>
+<trans-unit id="essayez_service_maintenant" resname="Essayez notre service dès maintenant">
+    <source>Essayez notre service dès maintenant</source>
+    <target>Try our service now</target>
+</trans-unit>
+
+<trans-unit id="beneficiez_service_mastering" resname="Bénéficiez d'un service de mastering professionnel pour sublimer vos morceaux. Notre équipe d'ingénieurs du son travaille avec passion pour vous offrir un rendu exceptionnel. Lancez-vous dès maintenant !">
+    <source>Bénéficiez d'un service de mastering professionnel pour sublimer vos morceaux. Notre équipe d'ingénieurs du son travaille avec passion pour vous offrir un rendu exceptionnel. Lancez-vous dès maintenant !</source>
+    <target>Benefit from professional mastering service to enhance your tracks. Our team of sound engineers works passionately to offer you an exceptional result. Get started now!</target>
+</trans-unit>
+
+<trans-unit id="essayez_maintenant" resname="Essayez maintenant">
+    <source>Essayez maintenant</source>
+    <target>Try now</target>
+</trans-unit>
+<trans-unit id="optimisation_piste" resname="Optimisation de chaque piste">
+    <source>Optimisation de chaque piste</source>
+    <target>Optimization of each track</target>
+</trans-unit>
+
+<trans-unit id="qualite_audio_optimale" resname="Qualité audio optimale">
+    <source>Qualité audio optimale</source>
+    <target>Optimal audio quality</target>
+</trans-unit>
+
+<trans-unit id="equilibrage_professionnel" resname="Équilibrage professionnel">
+    <source>Équilibrage professionnel</source>
+    <target>Professional balancing</target>
+</trans-unit>
+
+<trans-unit id="reduction_bruit" resname="Réduction du bruit">
+    <source>Réduction du bruit</source>
+    <target>Noise reduction</target>
+</trans-unit>
+
+<trans-unit id="compatibilite_formats" resname="Compatibilité avec tous les formats">
+    <source>Compatibilité avec tous les formats</source>
+    <target>Compatibility with all formats</target>
+</trans-unit>
+
+<trans-unit id="service_rapide_fiable" resname="Service rapide et fiable">
+    <source>Service rapide et fiable</source>
+    <target>Fast and reliable service</target>
+</trans-unit>
+<trans-unit id="de_la_musique" resname="De la musique">
+    <source>De la musique</source>
+    <target>Music</target>
+</trans-unit>
+
+<trans-unit id="pour_tout_le_monde" resname="pour tout le monde.">
+    <source>pour tout le monde.</source>
+    <target>for everyone.</target>
+</trans-unit>
+
+<trans-unit id="solmusic_collection" resname="Avec SolMusic, découvrez une collection de musiques diverses et variées pour tous les goûts.">
+    <source>Avec SolMusic, découvrez une collection de musiques diverses et variées pour tous les goûts.</source>
+    <target>With SolMusic, discover a collection of diverse and varied music for all tastes.</target>
+</trans-unit>
+
+<trans-unit id="se_connecter" resname="Se connecter">
+    <source>Se connecter</source>
+    <target>Log in</target>
+</trans-unit>
+
+<trans-unit id="commencer_essai_gratuit" resname="Commencer l'essai gratuit">
+    <source>Commencer l'essai gratuit</source>
+    <target>Start free trial</target>
+</trans-unit>
+
+<trans-unit id="écoutez" resname="Écoutez">
+    <source>Écoutez</source>
+    <target>Listen</target>
+</trans-unit>
+
+<trans-unit id="de_la_nouvelle_musique" resname="de la nouvelle musique.">
+    <source>de la nouvelle musique.</source>
+    <target>to new music.</target>
+</trans-unit>
+
+<trans-unit id="explorez_notre_catalogue" resname="Explorez notre catalogue et découvrez les dernières nouveautés musicales dès maintenant.">
+    <source>Explorez notre catalogue et découvrez les dernières nouveautés musicales dès maintenant.</source>
+    <target>Explore our catalog and discover the latest musical releases now.</target>
+</trans-unit>
+<trans-unit id="liste_audios" resname="Liste des audios">
+    <source>Liste des audios</source>
+    <target>List of audios</target>
+</trans-unit>
+
+<trans-unit id="nom_fichier" resname="Nom du fichier">
+    <source>Nom du fichier</source>
+    <target>File name</target>
+</trans-unit>
+
+<trans-unit id="actions" resname="Actions">
+    <source>Actions</source>
+    <target>Actions</target>
+</trans-unit>
+
+<trans-unit id="tel" resname="Télécharger">
+    <source>Télécharger</source>
+    <target>Download</target>
+</trans-unit>
+
+<trans-unit id="valider_audio" resname="Valider l'audio">
+    <source>Valider l'audio</source>
+    <target>Validate audio</target>
+</trans-unit>
+
+<trans-unit id="commenter" resname="Commenter">
+    <source>Commenter</source>
+    <target>Comment</target>
+</trans-unit>
+<trans-unit id="retour" resname="Retour">
+    <source>Retour</source>
+    <target>Return</target>
+</trans-unit>
+
+
+
+    </body>
+  </file>
+</xliff>

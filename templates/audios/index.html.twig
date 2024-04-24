@@ -1,0 +1,175 @@
+{# {% extends 'base.html.twig' %} #}
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+ <title>Liste des audios</title>
+   <body style="background-color: #0a183d;">
+   <!-- Header section -->
+    <header class="header-section clearfix" style="width: 100%;">
+    <a href="{{ path('app_home') }}" class="site-logo" style="font-size: 20px;">
+        <img src="{{ asset('img/logo.png') }}" alt="{{ 'SolMusic' | trans }}">
+    </a>
+    <div class="header-right">
+        <div class="user-panel">
+            {% if app.user %}
+                {# Utilisateur connecté #}
+                
+                <a href="{{ path('client_creer_projet') }}">{{ 'Créer un projet'  | trans}}</a>
+                <a href="{{ path('app_list_project') }}">{{ 'Mes projets' | trans }}</a>
+                
+             <a href="{{ path('app_logout') }}" class="logout">{{ 'Déconnecter' | trans }}</a>
+             <a href="#" onclick="changeLanguage('fr')">
+            <span>Fr</span>
+            </a>
+                <a>|</a>
+               
+                <a href="#" onclick="changeLanguage('en')">
+              <span>En</span>
+            </a>
+            <script>
+    function changeLanguage(lang) {
+        // Récupérer l'URL actuelle
+        var currentUrl = window.location.href;
+
+        // Remplacer le paramètre de langue dans l'URL actuelle
+        var newUrl = '';
+        if (currentUrl.includes('fr')) {
+            // Si l'URL actuelle contient 'fr', remplacez-le par 'en'
+            newUrl = currentUrl.replace('/fr/', '/en/');
+        } else if (currentUrl.includes('en')) {
+            // Si l'URL actuelle contient 'en', remplacez-le par 'fr'
+            newUrl = currentUrl.replace('/en/', '/fr/');
+        } else {
+            // Si l'URL actuelle ne contient ni 'fr' ni 'en', ajoutez le paramètre de langue à l'URL
+            newUrl = currentUrl + (currentUrl.includes('?') ? '&' : '?') + 'lang=' + lang;
+        }
+
+        // Recharger la page avec la nouvelle URL
+        window.location.href = newUrl;
+    }
+</script>
+            {% else %}
+                {# Utilisateur non connecté #}
+                <a href="{{ path('app_register') }}" class="register">{{ 'S\'inscrire' | trans }}</a>
+                <a>|</a>
+                <a href="{{ path('app_login') }}" class="login">{{ 'Se connecter' | trans }}</a>
+            {% endif %}
+        </div>
+    </div>
+     <ul class="main-menu" style="padding-right:0%;" >
+        <li><a href="{{ path('app_home') }}">{{ 'Accueil' | trans}}</a></li>
+      
+       
+    </ul>
+     
+</header>
+
+<!-- Header section end -->
+
+
+
+
+     <div class="container">
+        <h1 style="text-align:center;  margin-top:9%; margin-bottom:2%; font-size: 48px; color:white;">{{ 'Liste des audios' | trans }}</h1>
+        {% if audios is empty %}
+            <p>{{ 'Aucun audio trouvé pour ce projet' | trans }}.</p>
+        {% else %}
+            <div class="table-responsive card" style="border-color:#0a183d;background-color: #0a183d; color: white ">
+             <button class="btn btn-danger"  style=" width:10%; margin-bottom: 2%;">   <a href="{{ path('app_list_project') }}" style="color: white;"> {{ 'Retour' | trans}}</a> </button>
+                <table class="table ">
+                    <thead class="" style="background-color: #0a183d; color: white;">
+                        <tr>
+                            <th scope="col">{{ 'Nom du fichier' | trans}}</th>
+                            <th scope="col">{{ 'Actions' | trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in audios %}
+                            <tr>
+                                <td style="color: white;">{{ item.audio.getFiles() }}</td>
+                                <td>
+                                    {% if item.validerButtonUrl %}
+                                        <a href="{{ item.validerButtonUrl }}" class="btn btn-success">{{ 'Valider l\'audio' | trans }}</a>
+                                    {% else %}
+                                        <a href="{{ item.downloadButtonUrl }}" class="btn btn-danger">{{ 'Télécharger' | trans }}</a>
+                                    {% endif %}
+                                    <a href="{{ path('liste_commentaires', {'id_audio': item.audio.getId()}) }}" class="btn btn-primary">{{ 'Commenter' | trans }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    
+
+ 
+    </div>
+<!-- Footer section -->
+    <footer class="footer-section" style="background-color: #08192d;">
+    <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-7 order-lg-2">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            
+                        </div>
+                        <div class="col-sm-4">
+                         
+                        </div>
+                        <div class="col-sm-4">
+                             
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-5 order-lg-1">
+                    <img src="{{ asset('img/logo.png') }}" alt="{{ 'SolMusic' | trans }}">
+                    <div class="copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        {{ 'Copyright' | trans }} &copy;
+                        <script>document.write(new Date().getFullYear());</script>
+                        {{ 'Tous droits réservés' | trans }}
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="social-links">
+                        <a href=""><i class="fa fa-instagram"></i></a>
+                        <a href=""><i class="fa fa-pinterest"></i></a>
+                        <a href=""><i class="fa fa-facebook"></i></a>
+                        <a href=""><i class="fa fa-twitter"></i></a>
+                        <a href=""><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+
+    <script src="{{ asset('js/jplayerInit.js') }}"></script>
+    <script src="{{ asset('js/jquery.jplayer.min.js') }}"></script>
+    <script src="{{ asset('js/wavesurfer.min.js') }}"></script>
+    <script src="{{ asset('js/WaveSurferInit.js') }}"></script>
+    
+    </footer>
+    
+    <!--====== Javascripts & Jquery ======-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/main.js"></script>
+<!-- Footer section end -->
+   </body>
+ 
+
+{# {% block footer %}
+{% endblock %} #}

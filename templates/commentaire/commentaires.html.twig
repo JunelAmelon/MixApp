@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commentaire</title>
+    <!-- Ajoutez ici les liens vers les fichiers CSS et les scripts JavaScript -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+</head>
+<body class="bg-light">
+ <!-- Header section -->
+    <header class="header-section clearfix" style="width: 100%;">
+    <a href="{{ path('app_home') }}" class="site-logo" style="font-size: 20px;">
+        <img src="{{ asset('img/logo.png') }}" alt="{{ 'SolMusic' | trans }}">
+    </a>
+    <div class="header-right">
+        <div class="user-panel">
+            {% if app.user %}
+                {# Utilisateur connecté #}
+                
+                <a href="{{ path('client_creer_projet') }}">{{ 'Créer un projet'  | trans}}</a>
+                <a href="{{ path('app_list_project') }}">{{ 'Mes projets' | trans }}</a>
+                
+             <a href="{{ path('app_logout') }}" class="logout">{{ 'Déconnecter' | trans }}</a>
+             <a href="#" onclick="changeLanguage('fr')">
+            <span>Fr</span>
+            </a>
+                <a>|</a>
+               
+                <a href="#" onclick="changeLanguage('en')">
+              <span>En</span>
+            </a>
+            <script>
+    function changeLanguage(lang) {
+        // Récupérer l'URL actuelle
+        var currentUrl = window.location.href;
+
+        // Remplacer le paramètre de langue dans l'URL actuelle
+        var newUrl = '';
+        if (currentUrl.includes('fr')) {
+            // Si l'URL actuelle contient 'fr', remplacez-le par 'en'
+            newUrl = currentUrl.replace('/fr/', '/en/');
+        } else if (currentUrl.includes('en')) {
+            // Si l'URL actuelle contient 'en', remplacez-le par 'fr'
+            newUrl = currentUrl.replace('/en/', '/fr/');
+        } else {
+            // Si l'URL actuelle ne contient ni 'fr' ni 'en', ajoutez le paramètre de langue à l'URL
+            newUrl = currentUrl + (currentUrl.includes('?') ? '&' : '?') + 'lang=' + lang;
+        }
+
+        // Recharger la page avec la nouvelle URL
+        window.location.href = newUrl;
+    }
+</script>
+            {% else %}
+                {# Utilisateur non connecté #}
+                <a href="{{ path('app_register') }}" class="register">{{ 'S\'inscrire' | trans }}</a>
+                <a>|</a>
+                <a href="{{ path('app_login') }}" class="login">{{ 'Se connecter' | trans }}</a>
+            {% endif %}
+        </div>
+    </div>
+     <ul class="main-menu" style="padding-right:0%;" >
+        <li><a href="{{ path('app_home') }}">{{ 'Accueil' | trans}}</a></li>
+      
+       
+    </ul>
+     
+</header>
+
+<!-- Header section end -->
+ 
+<div class="d-flex justify-content-center mt-0" style="background-color: #0a183d; color: white; padding-top: 10%; padding-bottom:10%;">
+    <div class="col-md-6 offset-md-3 mx-auto">
+        <div class="card" style="border-radius: 3%; background-color: #08192d; padding-top:4%;">
+      
+
+ <div class="card-body">
+                <div id="commentaires-container">
+                   
+{% for commentaire in pagination|reverse %}
+    <div class="commentaire" data-comment-id="{{ commentaire.id }}">
+        {% if commentaire.id_user == 'admin@gmail.com' %}  
+            <div>Admin</div> 
+            <span><div class="message btn btn-primary" style="width: 40%; text-align: start;"> {{ commentaire.message }}</div></span> 
+        {% else %} 
+            <div style="text-align: end">{{ commentaire.id_user }}<div> 
+            <span class="message btn btn-primary " style="text-align: start; width: 40%;"> {{ commentaire.message }}</span></div></div> 
+        {% endif %} 
+    </div> 
+{% endfor %}
+
+ 
+
+
+                </div>
+                </div>
+               
+ 
+
+
+ 
+
+
+
+
+
+  <div class="card-footer"  >
+    <div class="row">
+        <div class="col-md-8">
+            {{ form_start(form, {'attr': {'class': 'form-group d-flex align-items-center'}}) }}
+                {{ form_row(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre commentaire', 'style': 'width: 200%;'}}) }}
+            </div>
+            <div class="col-md-4" style="margin-top:8%; marging-left:50%;">
+                <button type="submit" class="btn btn-primary" style="background-color: #f44336; border:#f44336;">{{ 'Envoyer' | trans }}</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Footer section -->
+    <footer class="footer-section" style="background-color: #08192d;" >
+    <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-7 order-lg-2">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            
+                        </div>
+                        <div class="col-sm-4">
+                         
+                        </div>
+                        <div class="col-sm-4">
+                             
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-5 order-lg-1">
+                    <img src="{{ asset('img/logo.png') }}" alt="{{ 'SolMusic' | trans }}">
+                    <div class="copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        {{ 'Copyright' | trans }} &copy;
+                        <script>document.write(new Date().getFullYear());</script>
+                        {{ 'Tous droits réservés' | trans }}
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="social-links">
+                        <a href=""><i class="fa fa-instagram"></i></a>
+                        <a href=""><i class="fa fa-pinterest"></i></a>
+                        <a href=""><i class="fa fa-facebook"></i></a>
+                        <a href=""><i class="fa fa-twitter"></i></a>
+                        <a href=""><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+
+    <script src="{{ asset('js/jplayerInit.js') }}"></script>
+    <script src="{{ asset('js/jquery.jplayer.min.js') }}"></script>
+    <script src="{{ asset('js/wavesurfer.min.js') }}"></script>
+    <script src="{{ asset('js/WaveSurferInit.js') }}"></script>
+    
+    </footer>
+    
+    <!--====== Javascripts & Jquery ======-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/main.js"></script>
+<!-- Footer section end -->
+<script>
+    function changeLanguage(lang) {
+        // Récupérer l'URL actuelle
+        var currentUrl = window.location.href;
+
+        // Remplacer le paramètre de langue dans l'URL actuelle
+        var newUrl = '';
+        if (currentUrl.includes('fr')) {
+            // Si l'URL actuelle contient 'fr', remplacez-le par 'en'
+            newUrl = currentUrl.replace('/fr/', '/en/');
+        } else if (currentUrl.includes('en')) {
+            // Si l'URL actuelle contient 'en', remplacez-le par 'fr'
+            newUrl = currentUrl.replace('/en/', '/fr/');
+        } else {
+            // Si l'URL actuelle ne contient ni 'fr' ni 'en', ajoutez le paramètre de langue à l'URL
+            newUrl = currentUrl + (currentUrl.includes('?') ? '&' : '?') + 'lang=' + lang;
+        }
+
+        // Recharger la page avec la nouvelle URL
+        window.location.href = newUrl;
+    }
+</script>
+    <!-- Ajoutez ici les scripts JavaScript -->
+</body>
+</html>

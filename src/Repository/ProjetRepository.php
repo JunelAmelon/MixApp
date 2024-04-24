@@ -45,4 +45,17 @@ class ProjetRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+     // Cette méthode retourne la somme des montants des projets avec l'état "valider"
+    public function countByNombreProjetsValides(): int
+{
+    return $this->createQueryBuilder('p')
+        ->select('COUNT(p.id)')
+        ->andWhere('p.etat_projet = :valider')
+        ->setParameter('valider', 'valider')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+
 }

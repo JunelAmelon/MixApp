@@ -1,104 +1,97 @@
 <?php
+// src/Entity/Commentaire.php
 
 namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\AudiosProjet;
+
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
 class Commentaire
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    private $id;
 
-    #[ORM\Column]
-    private ?int $id_projet = null;
+    #[ORM\Column(type: 'text')]
+    private $message;
 
-    #[ORM\Column(length: 255)]
-    private ?string $id_audio = null;
+    #[ORM\Column(type: 'json')]
+    private $role;
 
-    #[ORM\Column]
-    private ?int $id_user = null;
+    #[ORM\Column(type: 'datetime')]
+    private $date;
 
-    #[ORM\Column(length: 255)]
-    private ?string $commentaire = null;
+    #[ORM\Column(type: 'integer')]
+    private $id_audio;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_commentaire = null;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $id_user;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdProjet(): ?int
+    public function getMessage(): ?string
     {
-        return $this->id_projet;
+        return $this->message;
     }
 
-    public function setIdProjet(int $id_projet): static
+    public function setMessage(string $message): self
     {
-        $this->id_projet = $id_projet;
+        $this->message = $message;
 
         return $this;
     }
 
-    public function getIdAudio(): ?string
+    public function getRole(): ?array
+    {
+        return $this->role;
+    }
+
+    public function setRole(array $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getIdAudio(): ?int
     {
         return $this->id_audio;
     }
 
-    public function setIdAudio(string $id_audio): static
+    public function setIdAudio(int $id_audio): self
     {
         $this->id_audio = $id_audio;
 
         return $this;
     }
 
-    public function getIdUser(): ?int
+    public function getIdUser(): ?string
     {
         return $this->id_user;
     }
 
-    public function setIdUser(int $id_user): static
+    public function setIdUser(string $id_user): self
     {
         $this->id_user = $id_user;
 
         return $this;
     }
-
-    public function getCommentaire(): ?string
-    {
-        return $this->commentaire;
-    }
-
-    public function setCommentaire(string $commentaire): static
-    {
-        $this->commentaire = $commentaire;
-
-        return $this;
-    }
-
-    public function getDateCommentaire(): ?\DateTimeInterface
-    {
-        return $this->date_commentaire;
-    }
-
-    public function setDateCommentaire(\DateTimeInterface $date_commentaire): static
-    {
-        $this->date_commentaire = $date_commentaire;
-
-        return $this;
-    }
-
-     #[ORM\ManyToOne(targetEntity: AudiosProjet::class, inversedBy: "commentaires")]
-    #[ORM\JoinColumn(name: "audios_projet_id", referencedColumnName: "id")]
-    private ?AudiosProjet $audiosProjet = null;
-
-    #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: "commentaire")]
-    private $reponses;
 }

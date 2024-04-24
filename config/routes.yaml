@@ -3,3 +3,46 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+    
+# config/routes.yaml
+
+# controllers:
+#     resource: '../src/Controller/'
+#     namespace: App\Controller
+#     type: attribute
+
+download_audio:
+    path: '{_locale}/audio/download/{id}'
+    controller: 'App\Controller\AudiosController::download'
+
+commentaires:
+    path: '/{locale}/commentaires/{id_audio}'
+    controller: 'App\Controller\CommentaireController ::listerCommentaires'
+audios-list:
+    path: '/{_locale}/list/{projetId}'
+    controller: 'App\Controller\AudiosController ::listAudiosByProjet'
+submit-audio:
+    path: '/client/{_locale}/soumettre-audio/{projetId}'   
+    controller: 'App\Controller\ClientController ::soumettreAudio'
+
+validate-audio:
+    path: '/projet/{_locale}/{projetId}/audio/valider/{audioId}'   
+    controller: 'App\Controller\ClientController ::validerAudio'
+homepage:
+    path: /{_locale}
+    controller: 'App\Controller\HomeController ::index'
+list-project:
+    path: /client/{_locale}/list/project
+    controller: 'App\Controller\ListProjectController ::index'
+list-audiosby-project:
+    path: /projet/{_locale}/{id}/audios
+    controller: 'App\Controller\ProjetAudioController ::listerAudios'
+load_more_comments:
+    path: /load-more-comments
+    controller: App\Controller\CommentaireController::loadMoreComments
+    methods: [GET]
+ingenieure_submit_audio:
+    path: '/ingenieure/submit-audio/{projetId}'
+# access_control:
+#         - { path: ^/logout$, roles: IS_AUTHENTICATED_ANONYMOUSLY }

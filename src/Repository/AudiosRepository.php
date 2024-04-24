@@ -45,4 +45,13 @@ class AudiosRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+public function findAudiosByProjetId(int $projetId): array
+{
+    return $this->createQueryBuilder('a')
+        ->andWhere('a.projet_id = :projetId')
+        ->setParameter('projetId', $projetId)
+        ->getQuery()
+        ->getResult();
+}
 }

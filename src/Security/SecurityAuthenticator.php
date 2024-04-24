@@ -42,16 +42,27 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
-    {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
-        }
+   public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+{
+    // Récupérer l'utilisateur authentifié
+    $user = $token->getUser();
+   
+    // Vérifier le rôle de l'utilisateur
+    $roles = $user->getRoles();
 
-        // For example:
+    // Rediriger en fonction du rôle de l'utilisateur
+    if (in_array('ROLE_INGENIEUR', $roles, true)) {
+        // Si l'utilisateur est un ingénieur, rediriger vers le dashboard de l'ingénieur
+        return new RedirectResponse($this->urlGenerator->generate('ingenieur_dashborad'));
+    } elseif (in_array('ROLE_CLIENT', $roles, true)) {
+        // Si l'utilisateur est un client, rediriger vers la page d'accueil du client
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
-       
+    } else {
+        // Rediriger vers la page d'accueil par défaut si aucun rôle spécifique n'est trouvé
+        return new RedirectResponse($this->urlGenerator->generate('app_home'));
     }
+}
+
 
     protected function getLoginUrl(Request $request): string
     {

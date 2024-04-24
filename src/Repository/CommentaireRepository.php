@@ -45,4 +45,51 @@ class CommentaireRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findCommentairesWithUserIdQuery($id_audio, $page = 1, $limit = 10)
+{
+    $query = $this->createQueryBuilder('c')
+        ->select('c.id, c.message, c.date, c.id_user')
+        ->where('c.id_audio = :id_audio')
+        ->setParameter('id_audio', $id_audio)
+        ->orderBy('c.date', 'DESC')
+        ->getQuery();
+
+    // Calcule l'offset en fonction de la page et de la limite
+    $offset = ($page - 1) * $limit;
+
+    // Applique l'offset et la limite à la requête
+    $query->setFirstResult($offset)
+        ->setMaxResults($limit);
+
+    return $query;
+}
+
+public function findaCommentairesWithUserIdQuery($id_audio)
+{
+    return $this->createQueryBuilder('c')
+        ->select('c.id, c.message, c.date, c.id_user')
+        ->where('c.id_audio = :id_audio')
+        ->setParameter('id_audio', $id_audio)
+        ->orderBy('c.date', 'DESC')
+        ->getQuery()
+        ->getResult();
+}
+
+
+public function paginate($page, $perPage)
+{
+    $firstResult = ($page - 1) * $perPage;
+
+    return $this->createQueryBuilder('c')
+        ->orderBy('c.date', 'DESC')
+        ->setFirstResult($firstResult)
+        ->setMaxResults($perPage)
+        ->getQuery()
+        ->getResult();
+}
+
+
+
+ 
 }

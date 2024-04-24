@@ -11,7 +11,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
+    #[Route(path: '{_locale}/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
@@ -20,9 +20,9 @@ class SecurityController extends AbstractController
 
             // Rediriger en fonction du rôle
             if (in_array('ROLE_INGENIEUR', $roles, true)) {
-                return $this->redirectToRoute('ing_dashboard');
+                return $this->redirectToRoute('ingenieur_dashborad');
             } elseif (in_array('ROLE_CLIENT', $roles, true)) {
-                return $this->redirectToRoute('app_home_page');
+                return $this->redirectToRoute('app_home');
             } else {
                 return $this->redirectToRoute('app_home');
             }
@@ -36,10 +36,13 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route(path: '{_locale}/logout', name: 'app_logout')]
     public function logout(): Response
     {
         // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
          return $this->render('home/index.html.twig');
     }
+
+
+    
 }

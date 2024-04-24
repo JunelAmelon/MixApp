@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ asset('styles/css/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('styles/css/style.css') }}">
-	<link rel="stylesheet" href="{{ asset('styles/css/form.css') }}">
-    <title>{% block title %}Votre Site{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/form.css') }}">
+    <title>{% block title %}Page de connexion{% endblock %}</title>
       
 </head>
 <body class="sub-list">
@@ -15,9 +15,6 @@
             <a href="index.html" class="site-logo" style="font-size: 20px; text-align:center">
                 <img src="{{ asset('img/logo.png') }}" alt="SolMusic">
             </a>
-
-             
-
             <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
+    #[Route('/{_locale}/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, SecurityAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser()) {
@@ -33,11 +33,16 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            // Si l'adresse e-mail est 'junelamelon@gmail.com', attribuez le rôle ROLE_INGENIEURE
+            if ($user->getEmail() === 'junelamelon@gmail.com') {
+                $user->setRoles(['ROLE_INGENIEUR']);
+            }
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
+             if ($user->getRoles() === ['ROLE_INGENIEUR']) {
+            return $this->redirectToRoute('ingenieur_dashborad');
+            }
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
