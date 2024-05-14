@@ -25,7 +25,7 @@ class MusicIngType extends AbstractType
          ->add('projetId', HiddenType::class)
          ->add('files', FileType::class, [
             'label' => 'Fichiers Audio',
-            'multiple' => false,
+            'multiple' => true,
             'required' => true,
             'constraints' => [
                 new File([

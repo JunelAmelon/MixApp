@@ -1,0 +1,61 @@
+traduction des textes de la page de connexion et de
+l'inscription. mettre le bouton s'inscire sur la page de connexion.
+mettre un nom uniforme au niveau du site 
+mettre un label au niveau du champ qui permet de selectionner un fichier lors de 
+la creation d'un fichier.
+faire le filtrage dans la vue de telle maniere que le champ meme exige des audios ou montre uniquement des audios
+
+////////////////////////////////////////////////////
+faire les colonnes pour chaque chose qu'on trouve
+au niveau du dashboard de listing des audios.
+securiser le code de listing des audios pour le client
+pour ne pas qu'on modifie le id projet pour acceder au projet d'une autre personne
+trouver une autre annotation pour le nom des fichiers
+differencier les fichiers audios des fichiers 
+/////////////////////////////////////////////////
+
+- revoir les textes du header
+- Il ne s'agit pas d'un système de chat mais plutot
+d'un commentaire sur chaque projet
+- Changer l'option valider et mettre terminer
+- changer l'entete au niveau des messages (name())
+- ajouter un champ pour permettre au client de 
+soumettre plusieurs pistes audios lors de la creation du projet
+- Le client peut soumettre plusieurs audios bien app_register
+la creation du projet
+- Implementer une fonctionnalite pour permettre au 
+users de recevoir des notifs a chaque envoie de message
+- Gestion des users
+//////////////////////////////////////////////////////
+lors de la creation du projet, je veux qu'on permette au
+client de soumettre plusieurs pistes audios a la fois. 
+Il peut selectionner autant de piste qu'il veut. 
+
+Au niveau du form, a quoi doit ressembler le champs files. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

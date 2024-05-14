@@ -19,8 +19,8 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, SecurityAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser()) {
-             return $this->redirectToRoute('app_home');
-         }
+            return $this->redirectToRoute('app_home');
+        }
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -40,8 +40,8 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-             if ($user->getRoles() === ['ROLE_INGENIEUR']) {
-            return $this->redirectToRoute('ingenieur_dashborad');
+            if ($user->getRoles() === ['ROLE_INGENIEUR']) {
+                return $this->redirectToRoute('ingenieur_dashborad');
             }
             return $userAuthenticator->authenticateUser(
                 $user,

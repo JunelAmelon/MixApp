@@ -14,20 +14,36 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="registration-form" style="margin-top: 30px;">
-                 <a href="index.html" class="site-logo" style="font-size: 20px; text-align:center">
+                 <a href="{{ path('app_home') }}" class="site-logo" style="font-size: 20px; text-align:center">
                 <img src="{{ asset('img/logo.png') }}" alt="SolMusic">
             </a>
                 {{ form_start(registrationForm, {'attr': {'class': 'my-custom-form'}}) }}
-                    {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_row(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+{{ form_row(registrationForm.email, {
+    'label': 'Email'|trans,
+    'attr': {'class': 'form-control'}
+}) }}
+
+{{ form_row(registrationForm.nom, {
+    'label': 'Nom'|trans,
+    'attr': {'class': 'form-control'}
+}) }}
+
+{{ form_row(registrationForm.prenom, {
+    'label': 'Prénom'|trans,
+    'attr': {'class': 'form-control'}
+}) }}
                     {{ form_row(registrationForm.plainPassword, {
-                        'label': 'Password',
+                        'label': 'Mot de passe'|trans,
                         'attr': {'class': 'form-control'}
                     }) }}
-                    {{ form_row(registrationForm.agreeTerms) }}
+                    {{ form_row(registrationForm.agreeTerms,{
+                        'label': 'Acceptez les termes et conditions'|trans,
+                        
+                    }) }}
                     
-                    <button type="submit" class="btn btn-danger">Register</button>
+                    <button type="submit" class="btn btn-danger">{{ 'S\'inscrire' | trans }}</button>
+                  <p> {{ 'Vous avez un compte ?'| trans }} <a href="{{ path('app_login') }}" style="color:#f44336;">{{ 'Connectez-vous' | trans }}</a></p>
+          
                 {{ form_end(registrationForm) }}
             </div>
         </div>

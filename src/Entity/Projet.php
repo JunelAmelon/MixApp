@@ -3,11 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\ProjetRepository;
-use Doctrine\DBAL\Types\Types;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types; // Importe la classe DateTime
 use Doctrine\ORM\Mapping as ORM;
-use DateTime; // Importe la classe DateTime
-use DateTimeInterface; // Importe l'interface DateTimeInterface
-
+// Importe l'interface DateTimeInterface
 
 #[ORM\Entity(repositoryClass: ProjetRepository::class)]
 class Projet
@@ -36,14 +35,13 @@ class Projet
         return $this->nom_projet;
     }
 
-
     public function setNomProjet(string $nom_projet): static
     {
         $this->nom_projet = $nom_projet;
 
         return $this;
     }
-  
+
     // Ajoutez le getter pour récupérer la valeur de la propriété etat_projet
     public function getEtatProjet(): ?string
     {
@@ -70,7 +68,6 @@ class Projet
 
     public function isValide(): bool
     {
-       
 
         return $this->etat_projet === 'valider';
     }
@@ -84,8 +81,8 @@ class Projet
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $files= null;
+    #[ORM\Column(type: Types::JSON)]
+    private ?array $files;
 
     public function getIdClient(): ?string
     {
@@ -99,12 +96,12 @@ class Projet
         return $this;
     }
 
-      public function setUserIdentifier(?string $id_client): static
+    public function setUserIdentifier(?string $id_client): static
     {
-       $this->id_client = $id_client;
+        $this->id_client = $id_client;
 
-     return $this;
-            
+        return $this;
+
     }
 
     public function getDescription(): ?string
@@ -119,19 +116,14 @@ class Projet
         return $this;
     }
 
-//   #[ORM\OneToOne(targetEntity: Client::class, mappedBy: "projet")]
-//     private $id_client;
+    public function getFiles(): array
+    {$files = $this->files;
+        $files[] = '';
+        return array_unique($files);}
 
-public function getFiles(): ?string
-{
-    return $this->files;
-}
-
-public function setFiles(string $files): static
-{
-    $this->files = $files;
-
-    return $this;
-}
+    public function setFiles(array $files): void
+    {
+        $this->files = $files;
+    }
 
 }

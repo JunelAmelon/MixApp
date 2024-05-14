@@ -30,6 +30,9 @@ class Commentaire
     #[ORM\Column(type: 'string', length: 255)]
     private $id_user;
 
+    #[ORM\Column]
+    private ?int $id_projet = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,18 @@ class Commentaire
     public function setIdUser(string $id_user): self
     {
         $this->id_user = $id_user;
+
+        return $this;
+    }
+
+    public function getIdProjet(): ?int
+    {
+        return $this->id_projet;
+    }
+
+    public function setIdProjet(int $id_projet): static
+    {
+        $this->id_projet = $id_projet;
 
         return $this;
     }

@@ -46,12 +46,12 @@ class CommentaireRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    public function findCommentairesWithUserIdQuery($id_audio, $page = 1, $limit = 10)
+    public function findCommentairesWithUserIdQuery($id_projet, $page = 1, $limit = 10)
 {
     $query = $this->createQueryBuilder('c')
         ->select('c.id, c.message, c.date, c.id_user')
-        ->where('c.id_audio = :id_audio')
-        ->setParameter('id_audio', $id_audio)
+        ->where('c.id_projet = :id_projet')
+        ->setParameter('id_projet', $id_projet)
         ->orderBy('c.date', 'DESC')
         ->getQuery();
 
@@ -65,12 +65,12 @@ class CommentaireRepository extends ServiceEntityRepository
     return $query;
 }
 
-public function findaCommentairesWithUserIdQuery($id_audio)
+public function findaCommentairesWithUserIdQuery($id_projet)
 {
     return $this->createQueryBuilder('c')
         ->select('c.id, c.message, c.date, c.id_user')
-        ->where('c.id_audio = :id_audio')
-        ->setParameter('id_audio', $id_audio)
+        ->where('c.id_projet = :id_projet')
+        ->setParameter('id_projet', $id_projet)
         ->orderBy('c.date', 'DESC')
         ->getQuery()
         ->getResult();

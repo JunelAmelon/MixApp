@@ -68,12 +68,23 @@
                     <div class="error-message">{{ form_errors(form.description) }}</div>
 
                     <div class="form-group">
-                    <div class="custom-file" style="margin-bottom: 10px;">
-                    {{ form_widget(form.files, {'attr': {'class': 'custom-file-input', 'style': 'background-color: white; color: black;', 'onchange': 'updateFileName(this)'}}) }}
-                    <label class="custom-file-label" for="{{ form.files.vars.id }}">Aucun fichier choisi</label>
-        </div>
+                    <label class="" for="{{ form.files.vars.id }}">Selectionner un fichier</label>
+  
+                  <div class="custom-file" style="margin-bottom: 10px;">
+    {{ form_widget(form.files, {
+        'attr': {
+            'class': 'custom-file-input',
+            'accept': 'audio/*',
+            'multiple': 'multiple',  
+            'style': 'background-color: white; color: black;',
+            'onchange': 'updateFileName(this)',
+            'placeholder': 'Sélectionner un fichier'
+        }
+    }) }}
+    <label class="custom-file-label" for="{{ form.files.vars.id }}">Aucun fichier choisi</label>
+</div>
     </div>
-                    
+            
                     <button type="submit" class="btn btn-primary">Créer le Projet</button>
                     {{ form_end(form) }}
                 </div>
@@ -81,52 +92,30 @@
         </div>
     </section>
 
-    <!-- Footer section -->
-    <footer class="footer-section">
-        <div class="container">
+   <!-- Footer section -->
+    <footer class="footer-section" style="background-color: #08192d;">
+    <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-7 order-lg-2">
                     <div class="row">
                         <div class="col-sm-4">
-                            <div class="footer-widget">
-                                <h2>About us</h2>
-                                <ul>
-                                    <li><a href="">Our Story</a></li>
-                                    <li><a href="">Sol Music Blog</a></li>
-                                    <li><a href="">History</a></li>
-                                </ul>
-                            </div>
+                            
                         </div>
                         <div class="col-sm-4">
-                            <div class="footer-widget">
-                                <h2>Products</h2>
-                                <ul>
-                                    <li><a href="">Music</a></li>
-                                    <li><a href="">Subscription</a></li>
-                                    <li><a href="">Custom Music</a></li>
-                                    <li><a href="">Footage</a></li>
-                                </ul>
-                            </div>
+                         
                         </div>
                         <div class="col-sm-4">
-                            <div class="footer-widget">
-                                <h2>Playlists</h2>
-                                <ul>
-                                    <li><a href="">Newsletter</a></li>
-                                    <li><a href="">Careers</a></li>
-                                    <li><a href="">Press</a></li>
-                                    <li><a href="">Contact</a></li>
-                                </ul>
-                            </div>
+                             
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-5 order-lg-1">
-                    <img src="{{ asset('img/logo.png') }}" alt="SolMusic">
+                    <img src="{{ asset('img/logo.png') }}" alt="{{ 'SolMusic' | trans }}">
                     <div class="copyright">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                        All rights reserved 
+                        {{ 'Copyright' | trans }} &copy;
+                        <script>document.write(new Date().getFullYear());</script>
+                        {{ 'Tous droits réservés' | trans }}
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
                     <div class="social-links">
@@ -139,7 +128,31 @@
                 </div>
             </div>
         </div>
+        
+
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+
+    <script src="{{ asset('js/jplayerInit.js') }}"></script>
+    <script src="{{ asset('js/jquery.jplayer.min.js') }}"></script>
+    <script src="{{ asset('js/wavesurfer.min.js') }}"></script>
+    <script src="{{ asset('js/WaveSurferInit.js') }}"></script>
+    
     </footer>
+    
+    <!--====== Javascripts & Jquery ======-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/main.js"></script>
+<!-- Footer section end -->
     <script>
         function updateFileName(input) {
             var fileName = input.value.split('\\').pop(); // Obtenir le nom du fichier à partir du chemin complet du fichier

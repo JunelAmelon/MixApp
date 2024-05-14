@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/')]
-    #[Route('/{_locale}', name: 'app_home')]
+    #[Route('/client/{_locale}', name: 'app_home')]
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [

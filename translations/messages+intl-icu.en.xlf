@@ -293,6 +293,90 @@
     <source>Retour</source>
     <target>Return</target>
 </trans-unit>
+<trans-unit id="label_email" resname="Email">
+    <source>Email</source>
+    <target>Email</target>
+</trans-unit>
+
+<trans-unit id="label_password" resname="Mot de passe">
+    <source>Mot de passe</source>
+    <target>Password</target>
+</trans-unit>
+
+<trans-unit id="csrf_token" resname="CSRF Token">
+    <source>Token CSRF</source>
+    <target>CSRF Token</target>
+</trans-unit>
+
+<trans-unit id="btn_connecter" resname="Se connecter">
+    <source>Se connecter</source>
+    <target>Log in</target>
+</trans-unit>
+
+<trans-unit id="link_register" resname="Inscrivez-vous">
+    <source>Inscrivez-vous</source>
+    <target>Register</target>
+</trans-unit>
+<trans-unit id="link_no_account" resname="Vous n'avez pas un compte ?">
+    <source>Vous n'avez pas un compte ?</source>
+    <target>Don't have an account?</target>
+</trans-unit>
+<trans-unit id="register_form_header" resname="S'inscrire">
+    <source>S'inscrire</source>
+    <target>Register</target>
+</trans-unit>
+
+<trans-unit id="already_have_account" resname="Vous avez un compte ?">
+    <source>Vous avez un compte ?</source>
+    <target>Already have an account?</target>
+</trans-unit>
+
+<trans-unit id="login_link" resname="Connectez-vous">
+    <source>Connectez-vous</source>
+    <target>Login</target>
+</trans-unit>
+<trans-unit id="password_label" resname="Mot de passe">
+    <source>Mot de passe</source>
+    <target>Password</target>
+</trans-unit>
+<trans-unit id="email_label" resname="Adresse email">
+    <source>Adresse email</source>
+    <target>Email address</target>
+</trans-unit>
+
+<trans-unit id="nom_label" resname="Nom">
+    <source>Nom</source>
+    <target>Last Name</target>
+</trans-unit>
+
+<trans-unit id="prenom_label" resname="Prénom">
+    <source>Prénom</source>
+    <target>First Name</target>
+</trans-unit>
+
+<trans-unit id="plain_password_label" resname="plain_password_label">
+    <source>Mot de passe</source>
+    <target>Password</target>
+</trans-unit>
+<trans-unit id="audio_soumis" resname="Audio soumis">
+    <source>Audio soumis</source>
+    <target>Submited audio</target>
+</trans-unit>
+
+<trans-unit id="terms_and_conditions_label" resname="Acceptez les termes et conditions">
+    <source>Acceptez les termes et conditions</source>
+    <target>Accept the terms and conditions</target>
+</trans-unit>
+<trans-unit id="space_discussion" resname="Espace de discussion">
+    <source>Espace de discussion</source>
+    <target>Discussion Space</target>
+</trans-unit>
+
+<trans-unit id="visit_space_discussion" resname="Visitez l'espace discussion">
+    <source>Visitez l'espace discussion</source>
+    <target>Visit the discussion space</target>
+</trans-unit>
+
 
 
 

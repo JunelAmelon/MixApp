@@ -74,20 +74,23 @@
 </header>
 
 <!-- Header section end -->
- 
+
 <div class="d-flex justify-content-center mt-0" style="background-color: #0a183d; color: white; padding-top: 10%; padding-bottom:10%;">
+
     <div class="col-md-6 offset-md-3 mx-auto">
+     <h1 style="text-align:center;  margin-top:9%; margin-bottom:4%; font-size: 48px; color:white;">{{ 'Espace de discussion' | trans }}</h1>
         <div class="card" style="border-radius: 3%; background-color: #08192d; padding-top:4%;">
       
 
  <div class="card-body">
+
                 <div id="commentaires-container">
                    
 {% for commentaire in pagination|reverse %}
     <div class="commentaire" data-comment-id="{{ commentaire.id }}">
         {% if commentaire.id_user == 'admin@gmail.com' %}  
             <div>Admin</div> 
-            <span><div class="message btn btn-primary" style="width: 40%; text-align: start;"> {{ commentaire.message }}</div></span> 
+            <span><div class="message btn  " style="width: 40%; text-align: start; background-color:gray; color: white;"> {{ commentaire.message }}</div></span> 
         {% else %} 
             <div style="text-align: end">{{ commentaire.id_user }}<div> 
             <span class="message btn btn-primary " style="text-align: start; width: 40%;"> {{ commentaire.message }}</span></div></div> 

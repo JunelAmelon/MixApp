@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+   <!-- Vendor CSS Files -->
+  <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/quill/quill.snow.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/quill/quill.bubble.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/simple-datatables/style.css') }}" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ asset('css/style-admin.css') }}"/>
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Aug 30 2023 with Bootstrap v5.3.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">MixApp</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+     
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+ 
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+         
+            <span class="d-none d-md-block  ps-2">      {% if app.user %}
+   {{ app.user.getPrenom()}} {{ app.user.getNom() }} </span>
+ {% endif %}</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a href="{{ path('ingenieur_dashborad') }}" class="nav-link">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+         
+      
+      </li><!-- End Dashboard Nav -->
+
+    
+ 
+
+   
+
+     
+
+    
+ 
+
+     
+
+      
+
+      {# <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li><!-- End Contact Page Nav --> #}
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ path('app_logout') }}">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Se deconnecter</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Commentaires</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ path('ingenieur_dashborad') }}">Home</a></li>
+          <li class="breadcrumb-item active">Envoyer un commentaire</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+<!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+            <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card customers-card">
+ 
+
+ <div class="card-body">
+                  <h5 class="card-title">  </h5>
+                   <div class=""> 
+                        {% for commentaire in commentaires|reverse %}
+                  
+                            <div class="commentaire" style="">
+                                <div class="utilisateur">
+                                {% if commentaire.id_user != 'admin@gmail.com' %}  
+                                <div>Client</div> 
+                                <span><div class="message btn btn-primary" style="width: 40%; text-align: start;"> {{ commentaire.message }}</div></span> 
+                               
+                                
+                                 {% else %} 
+                                 <div style="text-align: end">Admin <div> 
+                                <span class="message btn btn-primary " style="text-align: start; width: 40%;"> {{ commentaire.message }}</span></div></div> 
+                               
+                                 {% endif %} 
+                                </div> 
+                            </div>
+                       
+                        {% endfor %}
+                    </div>
+                  <div class="d-flex align-items-center">
+                     {{ form_start(form, {'attr': {'class': 'form-group w-100'}}) }}
+        <div class="input-group">
+            {{ form_row(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre commentaire'}}) }}
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary" style="margin-top: 45%; margin-left: 12%">{{ 'Envoyer' | trans }}</button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+
+                {# Affichage des erreurs de formulaire #}
+                {% if form_errors(form) %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form) }}
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {# {{ form_start(form, {'attr': {'class': 'form-group'}}) }}
+                        {{ form_row(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre commentaire'}}) }}
+
+                        <button type="submit" class="btn btn-primary mt-2">{{ 'Envoyer' | trans }}</button>
+                        {{ form_end(form) }} #}
+                    </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div><!-- End Customers Card -->
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+     
+
+              </div>
+            </div><!-- End Reports -->
+          </div>
+        </div>
+<!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          <!-- Recent Activity -->
+          {# <div class="card">
+           
+
+            <div class="card-body">
+              <h5 class="card-title">{{ 'Commentaires' | trans }} </h5>
+
+              <div class="activity">
+
+                <div class="activity-item d-flex">
+               
+              {# {% if commentaires is  empty  %}
+               <div> {{ 'Vos commentaires apparaitrons ici' }}</div>
+               <img src="{{ asset('images/topics/ms2.png') }}" alt="">
+               {% else %}
+                <div class="">  
+                    <div class=""> 
+                        {% for commentaire in commentaires %}
+                  
+                            <div class="commentaire" style="end">
+                                <div class="utilisateur">{% if commentaire.id_user == 'admin@gmail.com' %}  <div>Admin</div> {% else %} <div style="text-align: end">User</div> {% endif %} </div>
+                                {% if commentaire.id_user == 'admin@gmail.com' %}  
+                                <div class="message btn btn-primary" style="text-align: left;"> {{ commentaire.message }}</div>
+                                {% else %}
+                                <div class="message btn btn-danger" style="text-align: end;"> {{ commentaire.message }}</div>
+                                {% endif %}  
+                            </div>
+                       
+                        {% endfor %}
+                    </div>
+                    {% endif %} #}
+                </div>
+             
+                </div><!-- End activity item-->
+                </div>
+
+            </div>
+          </div><!-- End Recent Activity -->
+ 
+
+       
+
+        </div><!-- End Right side columns --> 
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>MixApp</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+         </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ asset('vendor-admin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor-admin/chart.js/chart.umd.js') }}"></script>
+ 
+<script src="{{ asset('vendor-admin/simple-datatables/simple-datatables.js') }}"></script>
+ 
+<script src="{{ asset('vendor-admin/php-email-form/validate.js') }}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('js/main-admin.js') }}"></script>
+
+
+</body>
+
+</html>

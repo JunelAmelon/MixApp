@@ -39,60 +39,70 @@ class ClientController extends AbstractController
         $form = $this->createForm(ProjetType::class, $projet);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $projet->setEtatProjet('en attente');
+        if ($form->isSubmitted()) {
+            $projet->setEtatProjet('en cours');
             $projet->setDateCreation(new \DateTime());
             $projet->SetUserIdentifier($id_client);
             // Récupérer le fichier soumis
-            $file = $form['files']->getData();
+            $files = $form['files']->getData();
             // Créer une nouvelle instance de Audios avec le nom du fichier temporaire
-            $projet->setFiles($file->getClientOriginalName());
-            // Persiste l'objet Audios dans la base de données
-           
 
-            $em->persist($projet);
-            $em->flush(); 
-            // Créer une nouvelle instance de Audios avec le nom du fichier temporaire
-            $audio->setFiles($file->getClientOriginalName());
-            $audio->setDatesAjout(new \DateTime());
+            foreach ($files as $file) {
+                // Créer une nouvelle instance de Audios pour chaque fichier audio
+                $audio = new Audios();
+                $audio->setFiles($file->getClientOriginalName());
+                $audio->setDatesAjout(new \DateTime());
 
-            // Mettre à jour l'entité Audios dans la base de données avec le nom final
-            $em->persist($audio);
-            $em->flush(); // Flush pour obtenir l'ID généré
+                // Persiste l'objet Audios dans la base de données
+                $em->persist($audio);
+                $em->flush(); // Flush pour obtenir l'ID généré
 
-            // Récupérer l'ID de l'audio après son insertion dans la base de données
-            $audioId = $audio->getId();
-          
-            // Renommer le fichier en utilisant l'ID de l'audio
-            $fileName = $audioId . '.' . $file->guessExtension();
+                // Récupérer l'ID de l'audio après son insertion dans la base de données
+                $audioId = $audio->getId();
 
-            // Déplacer le fichier vers le répertoire souhaité
-            $file->move(
-                $this->getParameter('audio_directory'), // Configurez ce répertoire dans services.yaml
-                $fileName
-            );
+                // Renommer le fichier en utilisant l'ID de l'audio
+                $fileName = 'my_audio' . '.' . $audioId . '.' . $file->guessExtension();
+                $audio->setFiles($fileName);
 
-            // Mettre à jour le nom du fichier dans l'entité Audios avec le nom final
-            $audio->setFiles($fileName);
-          
+                // Déplacer le fichier vers le répertoire souhaité
+                $file->move(
+                    $this->getParameter('audio_directory'), // Configurez ce répertoire dans services.yaml
+                    $fileName
+                );
+                // Ajouter le nom du fichier au tableau
+                $fileNames[] = $fileName;
 
-            // Mettre à jour l'entité Audios dans la base de données avec le nom final
-            $em->persist($audio);
-            $em->flush();
+                // Mettre à jour l'entité Audios avec le nom final du fichier
+                // $audio->setFiles($fileNames);
 
-            // Créer une nouvelle instance de AudiosProjet et associer les entités manuellement
-            $audiosProjet = new AudiosProjet();
-            $audiosProjet->setEtatAudio('en cours'); // Remplacez par l'état audio approprié
-            //id du projet
-            $projetId = $projet->getId();
-            // Associe manuellement le projet, l'audio et l'état audio à l'objet AudiosProjet
-            $audiosProjet->setProjetId($projetId);
-            $audiosProjet->setMyIdAudio($audioId);
+                // Associer l'audio au projet
+                // $audio->setProjet($projet);
 
-            $em->persist($audiosProjet);
-            $em->flush();
-           
+                // Persiste l'objet Audios dans la base de données
+                $em->persist($audio);
+                $em->flush();
+                // Créer une nouvelle instance de AudiosProjet et associer les entités manuellement
+                $audiosProjet = new AudiosProjet();
+                $audiosProjet->setEtatAudio('en cours'); // Remplacez par l'état audio approprié
+                $em->persist($projet);
+                $em->flush();
 
+//id du projet
+                $projetId = $projet->getId();
+// Associe manuellement le projet, l'audio et l'état audio à l'objet AudiosProjet
+                $audiosProjet->setProjetId($projetId);
+                $audiosProjet->setMyIdAudio($audioId);
+                $audiosProjet->setFirstAudio('yes');
+                $projet->setFiles($fileNames);
+// Mettre à jour l'entité Audios dans la base de données avec le nom final
+                $em->persist($audio);
+                $em->flush();
+
+                $em->persist($audiosProjet);
+                $em->flush();
+
+            }
+            $projet->setFiles($fileNames);
             $this->addFlash('success-p', 'Le projet a été créé avec succès.');
 
             return $this->redirectToRoute('client_creer_projet');
@@ -110,80 +120,9 @@ class ClientController extends AbstractController
 
     }
 
-// #[Route('/client/{_locale}/soumettre-audio/{projetId}', name: 'client_soumettre_audio')]
-
-// public function soumettreAudio(
-//     Request $request,
-//     int $projetId,
-//     EntityManagerInterface $em,
-//     ProjetRepository $projetRepository
-// ): Response {
-//     $projet = $projetRepository->find($projetId);
-
-//     if (!$projet) {
-//         throw $this->createNotFoundException($this->intl->trans("Le projet n'existe pas."));
-//     }
-
-//     $audio = new Audios();
-//     $form = $this->createForm(AudioType::class, $audio);
-
-//     $form->handleRequest($request);
-
-//     if ($form->isSubmitted() && $form->isValid()) {
-//         // Récupérer le fichier soumis
-//         $file = $form['files']->getData();
-
-//         // Créer une nouvelle instance de Audios avec le nom du fichier temporaire
-//         $audio->setFiles($file->getClientOriginalName());
-//         $audio->setDatesAjout(new \DateTime());
-
-//         // Persiste l'objet Audios dans la base de données
-//         $em->persist($audio);
-//         $em->flush(); // Flush pour obtenir l'ID généré
-
-//         // Récupérer l'ID de l'audio après son insertion dans la base de données
-//         $audioId = $audio->getId();
-
-//         // Renommer le fichier en utilisant l'ID de l'audio
-//         $fileName = $audioId . '.' . $file->guessExtension();
-
-//         // Déplacer le fichier vers le répertoire souhaité
-//         $file->move(
-//             $this->getParameter('audio_directory'), // Configurez ce répertoire dans services.yaml
-//             $fileName
-//         );
-
-//         // Mettre à jour le nom du fichier dans l'entité Audios avec le nom final
-//         $audio->setFiles($fileName);
-
-//         // Mettre à jour l'entité Audios dans la base de données avec le nom final
-//         $em->persist($audio);
-//         $em->flush();
-
-//         // Créer une nouvelle instance de AudiosProjet et associer les entités manuellement
-//         $audiosProjet = new AudiosProjet();
-//         $audiosProjet->setEtatAudio('en attente'); // Remplacez par l'état audio approprié
-//         // Associe manuellement le projet, l'audio et l'état audio à l'objet AudiosProjet
-//         $audiosProjet->setProjetId($projetId);
-//         $audiosProjet->setMyIdAudio($audioId);
-
-//         $em->persist($audiosProjet);
-//         $em->flush();
-
-//         $this->addFlash('success', $this->intl->trans('Le fichier audio a été soumis avec succès.'));
-// /** */
-//         return $this->redirectToRoute('app_home');
-//     }
-
-//     return $this->render('client/soumettre_audio.html.twig', [
-//         'form' => $form->createView(),
-//         'projet' => $projet,
-//     ]);
-// }
-
     #[Route('/projet/{_locale}/{projetId}/audio/valider/{audioId}', name: 'valider_audio')]
     public function validerAudio(Request $request, int $projetId, int $audioId, EntityManagerInterface $em, ProjetRepository $projetRepository): Response
-    {
+    {$encodedId = base64_encode($projetId);
         $projet = $projetRepository->find($projetId);
 
         if (!$projet) {
@@ -200,8 +139,9 @@ class ClientController extends AbstractController
         $this->addFlash('success', $this->intl->trans("L'audio a été validé avec succès."));
 
         // Rediriger l'utilisateur vers la page de détails du projet ou toute autre page pertinente
-        return $this->redirectToRoute('app_home');
-    }
+        return $this->redirectToRoute('list_audios_by_projet', [
+            'encodedId' => $encodedId,
+        ]);}
 
     private function disableForeignKeyConstraints(Connection $connection)
     {

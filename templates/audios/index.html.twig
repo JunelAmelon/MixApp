@@ -1,88 +1,106 @@
 {# {% extends 'base.html.twig' %} #}
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
- <title>Liste des audios</title>
-   <body style="background-color: #0a183d;">
-   <!-- Header section -->
+<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+<!-- Bibliothèque Bootstrap Icons pour Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<title>Liste des audios</title>
+<body style="background-color: #0a183d;">
+    <!-- Header section -->
     <header class="header-section clearfix" style="width: 100%;">
-    <a href="{{ path('app_home') }}" class="site-logo" style="font-size: 20px;">
-        <img src="{{ asset('img/logo.png') }}" alt="{{ 'SolMusic' | trans }}">
-    </a>
-    <div class="header-right">
-        <div class="user-panel">
-            {% if app.user %}
-                {# Utilisateur connecté #}
-                
-                <a href="{{ path('client_creer_projet') }}">{{ 'Créer un projet'  | trans}}</a>
-                <a href="{{ path('app_list_project') }}">{{ 'Mes projets' | trans }}</a>
-                
-             <a href="{{ path('app_logout') }}" class="logout">{{ 'Déconnecter' | trans }}</a>
-             <a href="#" onclick="changeLanguage('fr')">
-            <span>Fr</span>
-            </a>
-                <a>|</a>
-               
-                <a href="#" onclick="changeLanguage('en')">
-              <span>En</span>
-            </a>
-            <script>
-    function changeLanguage(lang) {
-        // Récupérer l'URL actuelle
-        var currentUrl = window.location.href;
+        <a href="{{ path('app_home') }}" class="site-logo" style="font-size: 20px;">
+            <img src="{{ asset('img/logo.png') }}" alt="{{ 'SolMusic' | trans }}">
+        </a>
+        <div class="header-right">
+            <div class="user-panel">
+                {% if app.user %}
+                    {# Utilisateur connecté #}
+                    <a href="{{ path('client_creer_projet') }}">{{ 'Créer un projet' | trans }}</a>
+                    <a href="{{ path('app_list_project') }}">{{ 'Mes projets' | trans }}</a>
+                    <a href="{{ path('app_logout') }}" class="logout">{{ 'Déconnecter' | trans }}</a>
+                    <a href="#" onclick="changeLanguage('fr')">
+                        <span>Fr</span>
+                    </a>
+                    <a>|</a>
+                    <a href="#" onclick="changeLanguage('en')">
+                        <span>En</span>
+                    </a>
+                    <script>
+                        function changeLanguage(lang) {
+                            // Récupérer l'URL actuelle
+                            var currentUrl = window.location.href;
 
-        // Remplacer le paramètre de langue dans l'URL actuelle
-        var newUrl = '';
-        if (currentUrl.includes('fr')) {
-            // Si l'URL actuelle contient 'fr', remplacez-le par 'en'
-            newUrl = currentUrl.replace('/fr/', '/en/');
-        } else if (currentUrl.includes('en')) {
-            // Si l'URL actuelle contient 'en', remplacez-le par 'fr'
-            newUrl = currentUrl.replace('/en/', '/fr/');
-        } else {
-            // Si l'URL actuelle ne contient ni 'fr' ni 'en', ajoutez le paramètre de langue à l'URL
-            newUrl = currentUrl + (currentUrl.includes('?') ? '&' : '?') + 'lang=' + lang;
-        }
+                            // Remplacer le paramètre de langue dans l'URL actuelle
+                            var newUrl = '';
+                            if (currentUrl.includes('fr')) {
+                                // Si l'URL actuelle contient 'fr', remplacez-le par 'en'
+                                newUrl = currentUrl.replace('/fr/', '/en/');
+                            } else if (currentUrl.includes('en')) {
+                                // Si l'URL actuelle contient 'en', remplacez-le par 'fr'
+                                newUrl = currentUrl.replace('/en/', '/fr/');
+                            } else {
+                                // Si l'URL actuelle ne contient ni 'fr' ni 'en', ajoutez le paramètre de langue à l'URL
+                                newUrl = currentUrl + (currentUrl.includes('?') ? '&' : '?') + 'lang=' + lang;
+                            }
 
-        // Recharger la page avec la nouvelle URL
-        window.location.href = newUrl;
-    }
-</script>
-            {% else %}
-                {# Utilisateur non connecté #}
-                <a href="{{ path('app_register') }}" class="register">{{ 'S\'inscrire' | trans }}</a>
-                <a>|</a>
-                <a href="{{ path('app_login') }}" class="login">{{ 'Se connecter' | trans }}</a>
-            {% endif %}
+                            // Recharger la page avec la nouvelle URL
+                            window.location.href = newUrl;
+                        }
+                    </script>
+                {% else %}
+                    {# Utilisateur non connecté #}
+                    <a href="{{ path('app_register') }}" class="register">{{ 'S\'inscrire' | trans }}</a>
+                    <a>|</a>
+                    <a href="{{ path('app_login') }}" class="login">{{ 'Se connecter' | trans }}</a>
+                {% endif %}
+            </div>
         </div>
-    </div>
-     <ul class="main-menu" style="padding-right:0%;" >
-        <li><a href="{{ path('app_home') }}">{{ 'Accueil' | trans}}</a></li>
-      
-       
-    </ul>
-     
-</header>
-
-<!-- Header section end -->
+        <ul class="main-menu" style="padding-right:0%;" >
+            <li><a href="{{ path('app_home') }}">{{ 'Accueil' | trans}}</a></li>
+        </ul>
+    </header>
+    <!-- Header section end -->
 
 
-
-
-     <div class="container">
+    <div class="container" style="padding-bottom: 20%;">
         <h1 style="text-align:center;  margin-top:9%; margin-bottom:2%; font-size: 48px; color:white;">{{ 'Liste des audios' | trans }}</h1>
         {% if audios is empty %}
             <p>{{ 'Aucun audio trouvé pour ce projet' | trans }}.</p>
         {% else %}
             <div class="table-responsive card" style="border-color:#0a183d;background-color: #0a183d; color: white ">
-             <button class="btn btn-danger"  style=" width:10%; margin-bottom: 2%;">   <a href="{{ path('app_list_project') }}" style="color: white;"> {{ 'Retour' | trans}}</a> </button>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-danger" style="width:95%; margin-bottom: 2%;">  
+                           
+                            <a href="{{ path('app_list_project') }}" style="color: white;"><i class="bi bi-arrow-left"></i>{{ 'Retour' | trans}}</a> 
+                        </button>
+                    </div>
+
+                     <div class="col-md-3">
+                        <button class="btn btn-primary nav-link collapsed" style="width:108%; margin-bottom: 2%;">  
+                           
+                            <span  style="color: white;"><i class=""></i>  <span type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Envoyer d'autres pistes
+                </span> </span>
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        {% set projetId = app.request.attributes.get('encodedId') %}
+                        <a href="{{ path('liste_commentaires', {'id_projet': projetId}) }}" style="width:60%; margin-left:0%;" class="btn btn-primary">{{ 'Visitez l\'espace discussion' | trans }} <i class="bi bi-chat"></i>
+</a>
+                    </div>
+                </div>
+                 
                 <table class="table ">
                     <thead class="" style="background-color: #0a183d; color: white;">
                         <tr>
-                            <th scope="col">{{ 'Nom du fichier' | trans}}</th>
-                            <th scope="col">{{ 'Actions' | trans }}</th>
+                            <th scope="col">{{ 'Fichier' | trans}}</th>
+                            <th scope="col">{{ 'Lire l\'audio' | trans }}</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Auteur</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,12 +108,38 @@
                             <tr>
                                 <td style="color: white;">{{ item.audio.getFiles() }}</td>
                                 <td>
-                                    {% if item.validerButtonUrl %}
-                                        <a href="{{ item.validerButtonUrl }}" class="btn btn-success">{{ 'Valider l\'audio' | trans }}</a>
-                                    {% else %}
-                                        <a href="{{ item.downloadButtonUrl }}" class="btn btn-danger">{{ 'Télécharger' | trans }}</a>
+                                   
+                                        <audio controls controlsList="nodownload" class="btn">
+                                            <source src="{{ asset('uploads/audio/' ~ item.audio.getFiles()) }}" type="audio/mpeg" style="">
+                                            Votre navigateur ne prend pas en charge l'élément audio.
+                                        </audio>
+                                    
+                                    <a href=""></a>
+                                    <td> 
+                                       {% if item.validerButtonUrl %}
+                                        {% if item.statut == 'yes' %}
+    
+                                        {% else %} 
+                                            <a href="{{ item.validerButtonUrl }}" class="btn btn-success">
+                                               <i class="bi bi-check"></i> {{ 'Valider l\'audio' | trans }}  
+                                            </a>
+                                        {% endif %}</td>
+                                        {% else %}
+                                        {% if item.statut == 'yes' %} 
+                                          <span class=" " > </span> 
+                                        {% else %} 
+                                            <a href="{{ item.downloadButtonUrl }}" class="btn btn-warning">
+                                                <i class="bi bi-cloud-download"></i>{{ 'Télécharger' | trans }}
+                                            </a>
+                                        {% endif %}
                                     {% endif %}
-                                    <a href="{{ path('liste_commentaires', {'id_audio': item.audio.getId()}) }}" class="btn btn-primary">{{ 'Commenter' | trans }}</a>
+                                </td>
+                                <td>
+                                 {% if item.statut == 'yes' %} 
+                                 <span style="color: white;">Vous</span>
+                                 {% else %}
+                                 <span style="color: white;">Ingenieur</span>
+                                 {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
@@ -103,25 +147,46 @@
                 </table>
             </div>
         {% endif %}
-    
-
- 
     </div>
-<!-- Footer section -->
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Envoyer l'audio mixé</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(formi) }}
+    <div class="form-group">
+        <div class="custom-file" style="margin-bottom: 10px;">
+            {{ form_widget(formi.files, {'attr': {'class': 'custom-file-input', 'style': 'background-color: white; color: black;', 'onchange': 'updateFileName(this)',  'accept': 'audio/*',
+            'multiple': 'multiple',  }}) }}
+           {% set projetId = app.request.attributes.get('encodedId') %}
+            {{ form_widget(formi.projetId, {'value': projetId}) }}
+   <label class="custom-file-label" for="{{ formi.files.vars.id }}">Aucun fichier choisi</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+    {{ form_end(formi) }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+    <!-- Footer section -->
     <footer class="footer-section" style="background-color: #08192d;">
-    <div class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-7 order-lg-2">
                     <div class="row">
-                        <div class="col-sm-4">
-                            
-                        </div>
-                        <div class="col-sm-4">
-                         
-                        </div>
-                        <div class="col-sm-4">
-                             
-                        </div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-5 order-lg-1">
@@ -143,7 +208,7 @@
                 </div>
             </div>
         </div>
-        
+    </footer>
 
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -152,24 +217,16 @@
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
-
     <script src="{{ asset('js/jplayerInit.js') }}"></script>
     <script src="{{ asset('js/jquery.jplayer.min.js') }}"></script>
     <script src="{{ asset('js/wavesurfer.min.js') }}"></script>
     <script src="{{ asset('js/WaveSurferInit.js') }}"></script>
-    
-    </footer>
-    
-    <!--====== Javascripts & Jquery ======-->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.slicknav.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/main.js"></script>
-<!-- Footer section end -->
-   </body>
- 
+<script src="{{ asset('js/main-admin.js') }}"></script>
+<!-- jQuery (obligatoire pour Bootstrap) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-{# {% block footer %}
-{% endblock %} #}
+<!-- Bootstrap JS bundle (avec les plugins) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>

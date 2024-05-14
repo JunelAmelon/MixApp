@@ -1,0 +1,27 @@
+  <h1>Liste des Utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Rôles</th>
+                 <th>supprimer</th>
+           <th><a href="{{ path('create_user') }}">ajouter</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+                    <td><a href="{{ path('user_delete', {'id': user.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>

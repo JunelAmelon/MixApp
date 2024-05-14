@@ -21,7 +21,7 @@
                                 <button class="nav-link  active" id="music-tab" data-bs-toggle="tab" data-bs-target="#music-tab-pane" type="button" role="tab" aria-controls="music-tab-pane" aria-selected="false">{{ "En cours" | trans }}</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="true">{{ 'Valider' | trans}}</button>
+                                <button class="nav-link" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="true">{{ 'Terminer' | trans}}</button>
                             </li>
                         </ul>
                     </div>
@@ -34,16 +34,19 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
                                     <div class="row">
-                                     {% for project in projects %}
-                                      {% if project.getEtatProjet() == 'valider' %}
+                                     {% for project in projects %}                                         
+  {% if project.getEtatProjet() == 'valider' %}
                                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="{{ path('list_audios_by_projet', {'projetId': project.getId()}) }}">
+                                                 {% set projetId = project.getId() %}
+                                                 {% set encodedId = projetId | base64_encode %}
+                                             
+                                                <a href="{{ path('list_audios_by_projet', {'encodedId': encodedId}) }}">
                                                 
                                                     <div class="d-flex">
                                                         <div>
                             
-                                                            <h5 class="mb-2">{{ project.getNomProjet()}}</h5>
+                                                            <h5 class="mb-2">jj{{ project.getNomProjet()}}</h5>
 
                                                             <p class="mb-0">{{ project.getDescription() }}</p>
                                                         </div>
@@ -56,7 +59,7 @@
                                                 </a>
                                             </div>
                                         </div> 
-                                        {% endif %}
+                                   {% endif %}
                                       {% endfor %}       
                                     </div>
                                 </div>
@@ -66,10 +69,13 @@
                                 <div class="tab-pane fade show active" id="music-tab-pane" role="tabpanel" aria-labelledby="music-tab" tabindex="0">
                                     <div class="row">
                                     {% for project in projects %}
-                                      {% if project.getEtatProjet() == 'en attente' %}
+                                      {% if project.getEtatProjet() == 'en cours' %}
                                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-3">
                                             <div class="custom-block bg-white shadow-lg">
-                                                <a href="{{ path('list_audios_by_projet', {'projetId': project.getId()}) }}">
+                                              {% set projetId = project.getId() %}
+                                              {% set encodedId = projetId | base64_encode %}
+                                              <a href="{{ path('list_audios_by_projet', {'encodedId': encodedId}) }}">
+                                                  
                                                      <div class="d-flex">
                                                         <div>
                                                             <h5 class="mb-2">{{ project.getNomProjet()}}</h5>
@@ -87,7 +93,7 @@
                                         </div>
                                        {% endif %}
                                        {% endfor %}
-                                   
+                                       
                                     </div>
                                 </div>
    <!-- liste des projets en cours --> 
@@ -98,7 +104,14 @@
 
                     </div>
                 </div>
+
+
             </section>
+
+            {# <audio src="uploads/audio/56.mp3" style="background-color: red;"/>ggg
+                                      #}
+   
+
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
             <script src="{{ asset('js/jquery.sticky.js') }}"></script>

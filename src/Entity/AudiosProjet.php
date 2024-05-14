@@ -69,4 +69,19 @@ class AudiosProjet
     // #[ORM\ManyToOne(targetEntity: Audios::class, inversedBy: "audiosProjets")]
     // #[ORM\JoinColumn(name: "my_id_audio", referencedColumnName: "id")]
     private ?Audios $audios = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $first_audio = null;
+
+    public function getFirstAudio(): ?string
+    {
+        return $this->first_audio;
+    }
+
+    public function setFirstAudio(string $first_audio): static
+    {
+        $this->first_audio = $first_audio;
+
+        return $this;
+    }
 }

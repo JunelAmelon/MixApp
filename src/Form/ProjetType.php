@@ -18,37 +18,39 @@ class ProjetType extends AbstractType
         $builder
              ->add('nom_projet', TextType::class, [
                 'label' => 'Nom du Projet',
+                'required' => true,
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => [
                     'placeholder' => 'Votre description par défaut ici', // Définissez votre valeur par défaut
                      'style' => 'height: 200px;', // Définissez la hauteur par défaut ici
-           
+                      'required' => true,
       
                 ],
              ])
-            ->add('files', FileType::class, [
-            'label' => 'Fichiers Audio',
-            'multiple' => false, // Permettre le téléchargement de plusieurs fichiers
-            'required' => true, // Assurez-vous que le champ est requis
-            'constraints' => [
-                new File([
-                    'maxSize' => '1024M', // Taille maximale du fichier
-                    'mimeTypes' => [
-                        'audio/mpeg', // MP3
-                        'audio/x-wav', // WAV
-                        'audio/aiff', // AIFF
-                        'audio/flac', // FLAC
-                    ],
-                    'mimeTypesMessage' => 'Veuillez télécharger un fichier audio valide (MP3, WAV, AIFF, FLAC, etc.)',
-                    'maxSizeMessage' => 'Le fichier est trop volumineux. La taille maximale autorisée est {{ limit }} {{ suffix }}.',
-                    'disallowEmptyMessage' => 'Veuillez télécharger un fichier audio.',
-                    'extensions' => ['mp3'], // Extensions autorisées
-                    'mimeTypesMessage' => 'Veuillez télécharger un fichier MP3 valide.',
-                ]),
+           
+          ->add('files', FileType::class, [
+    'label' => 'Fichiers Audio',
+    'multiple' => true, // Permettre le téléchargement de plusieurs fichiers
+    'required' => true, // Rendre le champ requis
+    'constraints' => [
+        new File([
+            'maxSize' => '10M', // Taille maximale par fichier
+            'mimeTypes' => [
+                'audio/mpeg', // MP3
+                'audio/x-wav', // WAV
+                'audio/aiff', // AIFF
+                'audio/flac', // FLAC
             ],
-        ]);
+            'mimeTypesMessage' => 'Veuillez télécharger un fichier audio valide (MP3, WAV, AIFF, FLAC, etc.)',
+            'maxSizeMessage' => 'Le fichier est trop volumineux. La taille maximale autorisée est {{ limit }} {{ suffix }}.',
+            'disallowEmptyMessage' => 'Veuillez télécharger un fichier audio.',
+            'extensions' => ['mp3'], // Extensions autorisées
+            'extensionsMessage' => 'Veuillez télécharger un fichier MP3 valide.',
+        ]),
+    ],
+]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
