@@ -132,7 +132,7 @@ class IngenieurController extends AbstractController
         $formi = $this->createForm(MusicIngType::class, null);
 // Gérer la soumission du formulaire
         $formi->handleRequest($request);
-        $projet_Id = $formi['projetId']->getData();
+        $projet_Id = $formi['message']->getData();
 //dd($projetId);
 // Vérifier si le formulaire a été soumis et est valide
         if ($formi->isSubmitted()) {
